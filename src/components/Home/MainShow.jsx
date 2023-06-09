@@ -19,6 +19,10 @@ const Title = styled.h1``;
 
 const Description = styled.p`
   width: 35%;
+  transition: 0.5s ease-in-out;
+  @media screen and (max-width: 1280px) {
+    width: 75%;
+  }
 `;
 
 const Image = styled.img`
@@ -28,6 +32,21 @@ const Image = styled.img`
   position: absolute;
   z-index: -1;
   top: 0;
+`;
+
+const GradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  /* left: 0; */
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.169) 50%,
+    rgb(13, 13, 13) 100%
+  );
 `;
 
 const MainShow = () => {
@@ -59,6 +78,7 @@ const MainShow = () => {
         src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
         alt={data.original_title}
       />
+      <GradientOverlay />
     </Hero>
   );
 };

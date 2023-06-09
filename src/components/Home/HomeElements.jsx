@@ -11,14 +11,42 @@ export const Hero = styled.div`
   height: 80vh;
 `;
 
+export const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const MoviesSlider = styled.div`
   height: 365px;
-  background: red;
-  margin: 1rem 0 1rem 0;
+  background: #5a5a5a35;
+  border-radius: 25px;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  max-width: 1280px;
+  margin: 1em 1em 1em 1em;
+  /* @media screen and (max-width: 1220px) {
+    width: 75%;
+    margin: auto;
+  }
+  @media screen and (max-width: 500px) {
+    width: 85%;
+    margin: auto;
+  } */
 `;
 
 export const ShowsSlider = styled.div`
   height: 365px;
-  background: yellow;
-  margin: 1rem 0 1rem 0;
+  background: #5a5a5a35;
+  border-radius: 25px;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  /* @media screen and (max-width: 1220px) {
+    width: 75%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 85%;
+  } */
 `;

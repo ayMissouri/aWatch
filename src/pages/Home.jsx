@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Hero,
+  List,
   Main,
   MoviesSlider,
   ShowsSlider,
@@ -13,8 +14,10 @@ const Home = () => {
       <Hero>
         <MainShow></MainShow>
       </Hero>
-      <MoviesSlider></MoviesSlider>
-      <ShowsSlider></ShowsSlider>
+      <List>
+        <MoviesSlider>Trending Movies</MoviesSlider>
+        <ShowsSlider>Trending Shows</ShowsSlider>
+      </List>
     </Main>
   );
 };
