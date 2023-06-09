@@ -15,7 +15,11 @@ const Details = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  margin: 0.5em;
+  text-decoration: underline solid #c70a46 3px;
+  text-shadow: 2px 2px;
+`;
 
 const Description = styled.p`
   width: 35%;
@@ -49,6 +53,17 @@ const GradientOverlay = styled.div`
   );
 `;
 
+const Button = styled.button`
+  margin-top: 1em;
+  color: white;
+  background: none;
+  border: solid #c70a46 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 10em;
+  height: 3em;
+`;
+
 const MainShow = () => {
   const data = {
     adult: false,
@@ -73,6 +88,7 @@ const MainShow = () => {
       <Details>
         <Title>{data.original_title}</Title>
         <Description>{data.overview}</Description>
+        <Button>Watch Now</Button>
       </Details>
       <Image
         src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}

@@ -25,14 +25,9 @@ export const MoviesSlider = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 1em 1em 1em 1em;
-  /* @media screen and (max-width: 1220px) {
-    width: 75%;
-    margin: auto;
+  @media screen and (max-width: 1325px) {
+    width: 90%;
   }
-  @media screen and (max-width: 500px) {
-    width: 85%;
-    margin: auto;
-  } */
 `;
 
 export const ShowsSlider = styled.div`
@@ -43,10 +38,7 @@ export const ShowsSlider = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
-  /* @media screen and (max-width: 1220px) {
-    width: 75%;
+  @media screen and (max-width: 1325px) {
+    width: 90%;
   }
-  @media screen and (max-width: 500px) {
-    width: 85%;
-  } */
 `;
