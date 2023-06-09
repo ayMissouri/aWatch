@@ -1,15 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-
-const Main = styled.div`
-  /* background: #212121; */
-  height: 200vh;
-`;
+import {
+  Hero,
+  Main,
+  MoviesSlider,
+  ShowsSlider,
+} from "../components/Home/HomeElements";
+import MainShow from "../components/Home/MainShow";
 
 const Home = () => {
   return (
     <Main>
-      <h1>Homepage</h1>
+      <Hero>
+        <MainShow></MainShow>
+      </Hero>
+      <MoviesSlider></MoviesSlider>
+      <ShowsSlider></ShowsSlider>
     </Main>
   );
 };
