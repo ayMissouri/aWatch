@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
+  AnimeSlider,
   Hero,
   List,
   Main,
@@ -7,44 +8,11 @@ import {
   ShowsSlider,
 } from "../components/Home/HomeElements";
 import MainShow from "../components/Home/MainShow";
-import MovieCard from "../components/MovieCard";
 import styled from "styled-components";
-import ShowCard from "../components/ShowCard";
-
-const movie = {
-  adult: false,
-  backdrop_path: "/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
-  genre_ids: [28, 53, 80],
-  id: 603692,
-  original_language: "en",
-  original_title: "John Wick: Chapter 4",
-  overview:
-    "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
-  popularity: 4071.868,
-  poster_path: "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
-  release_date: "2023-03-22",
-  title: "John Wick: Chapter 4",
-  video: false,
-  vote_average: 7.9,
-  vote_count: 2758,
-};
-
-const show = {
-  backdrop_path: "/xkiv3e1daoqil5MRJitCJcwUgk2.jpg",
-  first_air_date: "2021-10-31",
-  genre_ids: [10764],
-  id: 114294,
-  name: "Judy Justice",
-  origin_country: ["US"],
-  original_language: "en",
-  original_name: "Judy Justice",
-  overview:
-    "The Honorable Judy Sheindlin, retired Judge of the Manhattan family Court, brings her signature blend of sharp wit and wisdom, hilarious candor and unwavering honesty that has made her America’s favorite judge for over 25 years, as she presides over real cases, arbitrates binding decisions and delivers what only she can: “Judy Justice.”",
-  popularity: 2995.502,
-  poster_path: "/4E8Rb9vPbixxC0ZdzSkvE5fpeQa.jpg",
-  vote_average: 4,
-  vote_count: 13,
-};
+import axios from "axios";
+import Slider from "../components/Slider/Slider";
+import SliderTv from "../components/Slider/SliderTV";
+import SliderAnime from "../components/Slider/SliderAnime";
 
 const SliderTitle = styled.div`
   display: flex;
@@ -63,27 +31,106 @@ const ShowsIcon = styled.i`
   font-size: 24px;
 `;
 
+const MoviesTitle = styled.h2`
+  background-image: linear-gradient(45deg, #fbacc5, #c70a46, #f07ea2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const ShowsTitle = styled.h2`
+  background-image: linear-gradient(45deg, yellow, #f3f3b1, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const AnimeTitle = styled.h2`
+  background-image: linear-gradient(45deg, #ff00f7, #ff003c, #f700ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
 const Home = () => {
+  const [movies, setMovies] = useState(null);
+  const [shows, setShows] = useState(null);
+  const [animes, setAnimes] = useState(null);
+
+  useEffect(() => {
+    const url =
+      "https://api.themoviedb.org/3/discover/movie?api_key=db319c6e116fed7f38628e30ff441b3e&with_genres=&with_networks=&with_keywords=&language=en-US&page=1&include_adult=false&sort_by=popularity.desc&watch_region=US&with_watch_monetization_types=flatrate|free|ads|rent|buy";
+    const getPopularMovies = async () => {
+      try {
+        const data = await axios.get(url);
+        setMovies(data.data.results);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    };
+
+    getPopularMovies();
+  }, []);
+
+  // console.log(movies);
+
+  useEffect(() => {
+    const url =
+      "https://api.themoviedb.org/3/discover/tv?api_key=db319c6e116fed7f38628e30ff441b3e&with_genres=&with_networks=&with_keywords=&language=en-US&page=1&include_adult=false&sort_by=popularity.desc&watch_region=US&with_watch_monetization_types=flatrate|free|ads|rent|buy";
+    const getPopularShows = async () => {
+      try {
+        const data = await axios.get(url);
+        setShows(data.data.results);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    };
+
+    getPopularShows();
+  }, []);
+
+  // console.log(shows)
+
+  useEffect(() => {
+    const url = "https://api.amissouri.uk/anime/gogoanime/top-airing";
+    const getPopularAnimes = async () => {
+      try {
+        const data = await axios.get(url, { params: { page: 1 } });
+        setAnimes(data.data.results);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    };
+
+    getPopularAnimes();
+  }, []);
+
+  // console.log(shows)
+
   return (
     <Main>
       <Hero>
-        <MainShow></MainShow>
+        <MainShow movie={movies ? movies : {}}></MainShow>
       </Hero>
       <List>
         <MoviesSlider>
           <SliderTitle>
             <MoviesIcon className="fa-solid fa-fire"></MoviesIcon>
-            <h2>Movies</h2>
+            <MoviesTitle>Movies</MoviesTitle>
           </SliderTitle>
-          <MovieCard movie={movie}></MovieCard>
+          <Slider movies={movies}></Slider>
         </MoviesSlider>
         <ShowsSlider>
           <SliderTitle>
             <ShowsIcon className="fa-solid fa-bolt-lightning"></ShowsIcon>
-            <h2>Shows</h2>
+            <ShowsTitle>Shows</ShowsTitle>
           </SliderTitle>
-          <ShowCard show={show}></ShowCard>
+          <SliderTv shows={shows}></SliderTv>
         </ShowsSlider>
+        <AnimeSlider>
+          <SliderTitle>
+            <h2>👹</h2>
+            <AnimeTitle> Anime</AnimeTitle>
+          </SliderTitle>
+          <SliderAnime animes={animes}></SliderAnime>
+        </AnimeSlider>
       </List>
     </Main>
   );

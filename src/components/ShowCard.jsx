@@ -11,6 +11,10 @@ const Card = styled.div`
   /* border: 1px solid #ccc; */
   border-radius: 8px;
   padding: 16px;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    filter: drop-shadow(0px 0px 10px yellow);
+  }
 `;
 
 const Poster = styled.img`
@@ -32,11 +36,13 @@ const ShowCard = ({ show }) => {
   return (
     <Card>
       <Poster
-        src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
-        alt={show.original_name}
+        src={`https://image.tmdb.org/t/p/original${
+          show ? show.poster_path : ""
+        }`}
+        alt={show ? show.original_name : ""}
       />
-      <Title>{show.original_name}</Title>
-      <ReleaseDate>{show.first_air_date}</ReleaseDate>
+      <Title>{show ? show.original_name : ""}</Title>
+      <ReleaseDate>{show ? show.first_air_date : ""}</ReleaseDate>
     </Card>
   );
 };

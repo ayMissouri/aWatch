@@ -13,7 +13,7 @@ const Card = styled.div`
   padding: 16px;
   transition: 0.2s ease-in-out;
   &:hover {
-    filter: drop-shadow(0px 0px 10px #c70a46);
+    filter: drop-shadow(0px 0px 10px yellow);
   }
 `;
 
@@ -32,20 +32,13 @@ const ReleaseDate = styled.p`
   color: #777;
 `;
 
-const MovieCard = ({ movie }) => {
-  // console.log(movie);
+const AnimeCard = ({ anime }) => {
   return (
     <Card>
-      <Poster
-        src={`https://image.tmdb.org/t/p/original${
-          movie ? movie.poster_path : ""
-        }`}
-        alt={movie ? movie.title : ""}
-      />
-      <Title>{movie ? movie.title : ""}</Title>
-      <ReleaseDate>{movie ? movie.release_date : ""}</ReleaseDate>
+      <Poster src={`${anime ? anime.image : ""}`} alt={anime ? anime.id : ""} />
+      <Title>{anime ? anime.title : ""}</Title>
     </Card>
   );
 };
 
-export default MovieCard;
+export default AnimeCard;
