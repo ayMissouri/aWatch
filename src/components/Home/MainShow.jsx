@@ -18,7 +18,22 @@ const Details = styled.div`
 const Title = styled.h1`
   margin: 0.5em;
   text-decoration: underline solid #c70a46 3px;
-  text-shadow: 2px 2px;
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 2px;
+    left: 2px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #c70a46, #c70a46);
+    opacity: 0.2;
+    filter: blur(4px);
+    pointer-events: none;
+  }
 `;
 
 const Description = styled.p`
@@ -62,6 +77,11 @@ const Button = styled.button`
   cursor: pointer;
   width: 10em;
   height: 3em;
+  font-weight: bold;
+  transition: 1s ease-in-out;
+  &:hover {
+    background: linear-gradient(to right, #427bf5e0, #c70a46e0);
+  }
 `;
 
 const MainShow = () => {
@@ -88,7 +108,9 @@ const MainShow = () => {
       <Details>
         <Title>{data.original_title}</Title>
         <Description>{data.overview}</Description>
-        <Button>Watch Now</Button>
+        <Button>
+          <i className="fa-solid fa-play"></i> Watch Now
+        </Button>
       </Details>
       <Image
         src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}

@@ -19,12 +19,12 @@ export const List = styled.div`
 
 export const MoviesSlider = styled.div`
   height: 365px;
-  background: #5a5a5a35;
+  /* background: #5a5a5a35; */
   border-radius: 25px;
   transition: 0.5s ease-in-out;
   width: 100%;
   max-width: 1280px;
-  margin: 1em 1em 1em 1em;
+  margin: 1em 1em 5em 1em;
   @media screen and (max-width: 1325px) {
     width: 90%;
   }
@@ -32,7 +32,7 @@ export const MoviesSlider = styled.div`
 
 export const ShowsSlider = styled.div`
   height: 365px;
-  background: #5a5a5a35;
+  /* background: #5a5a5a35; */
   border-radius: 25px;
   transition: 0.5s ease-in-out;
   width: 100%;
