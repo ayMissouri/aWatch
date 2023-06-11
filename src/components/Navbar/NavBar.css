@@ -12,6 +12,11 @@
   font-weight: bold;
 }
 
+.navlogo {
+  width: 12rem;
+  margin-top: 10px;
+}
+
 .nav-container {
   display: flex;
   justify-content: center;

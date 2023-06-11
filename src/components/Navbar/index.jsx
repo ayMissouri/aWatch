@@ -11,7 +11,7 @@ function NavBar() {
       <nav className="navbar">
         <div className="nav-container">
           <NavLink to="/" className="nav-logo">
-            <img src="./awatch.png" alt="awatch logo" width="100vh" />
+            <img src="./awatch.png" alt="awatch logo" className="navlogo" />
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
