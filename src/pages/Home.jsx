@@ -14,7 +14,7 @@ import Slider from "../components/Slider/Slider";
 import SliderTv from "../components/Slider/SliderTV";
 import SliderAnime from "../components/Slider/SliderAnime";
 import Lottie from "react-lottie";
-import * as loading from "../../public/meteorite.json";
+import * as loading from "../../public/loading1.json";
 
 const loadingOptions = {
   loop: true,
@@ -72,7 +72,6 @@ const Home = () => {
   const [movies, setMovies] = useState(null);
   const [shows, setShows] = useState(null);
   const [animes, setAnimes] = useState(null);
-  let [isLoading, setIsLoading] = useState(0);
 
   useEffect(() => {
     const url =
@@ -81,7 +80,6 @@ const Home = () => {
       try {
         const data = await axios.get(url);
         setMovies(data.data.results);
-        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -99,7 +97,6 @@ const Home = () => {
       try {
         const data = await axios.get(url);
         setShows(data.data.results);
-        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -116,7 +113,6 @@ const Home = () => {
       try {
         const data = await axios.get(url, { params: { page: 1 } });
         setAnimes(data.data.results);
-        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -128,16 +124,16 @@ const Home = () => {
   // console.log(shows)
 
   return (
-    <Main>
-      {!movies || !shows || !animes ? (
+    <>
+      {!movies && !shows && !animes ? (
         <LoadingDiv>
           <Lottie options={loadingOptions} height={250} width={250} />
           <h1>Loading...</h1>
         </LoadingDiv>
       ) : (
-        <>
+        <Main>
           <Hero>
-            <MainShow movie={movies ? movies : {}}></MainShow>
+            <MainShow movie={movies}></MainShow>
           </Hero>
           <List>
             <MoviesSlider>
@@ -162,9 +158,9 @@ const Home = () => {
               <SliderAnime animes={animes}></SliderAnime>
             </AnimeSlider>
           </List>
-        </>
+        </Main>
       )}
-    </Main>
+    </>
   );
 };
 

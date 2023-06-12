@@ -3,8 +3,8 @@ import styled from "styled-components";
 const Hero = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center; /* Added to vertically center the content */
-  height: 100vh; /* Added to make the hero section full height */
+  align-items: center;
+  height: 100vh;
 `;
 
 const Details = styled.div`
@@ -49,6 +49,7 @@ const Title = styled.h1`
 const Description = styled.p`
   width: 35%;
   transition: 0.5s ease-in-out;
+  font-size: 18px;
   @media screen and (max-width: 1280px) {
     width: 75%;
   }
@@ -72,14 +73,14 @@ const GradientOverlay = styled.div`
   z-index: -1;
   background: linear-gradient(
     to bottom,
-    rgba(13, 13, 13, 0) 0%,
-    rgba(13, 13, 13, 0.169) 50%,
+    rgba(13, 13, 13, 0) 10%,
+    rgba(13, 13, 13, 0.5) 50%,
     rgb(13, 13, 13) 100%
   );
 `;
 
 const Button = styled.button`
-  margin-top: 1em;
+  margin-top: 1.5em;
   color: white;
   background: none;
   border: solid #c70a46 2px;
@@ -97,7 +98,7 @@ const Button = styled.button`
 const Arrow = styled.div`
   padding-top: 7rem;
   @media screen and (max-height: 667px) {
-    padding-top: 3rem;
+    padding-top: 1rem;
   }
   @media screen and (max-height: 740px) {
     padding-top: 2rem;
@@ -110,13 +111,15 @@ const Arrow = styled.div`
   }
 `;
 
+const randomIndex = Math.floor(Math.random() * 3);
+
 const MainShow = ({ movie }) => {
   // console.log(movie);
   return (
     <Hero>
       <Details>
-        <Title>{movie[0] ? movie[0].original_title : ""}</Title>
-        <Description>{movie[0] ? movie[0].overview : ""}</Description>
+        <Title>{movie[randomIndex].original_title}</Title>
+        <Description>{movie[randomIndex].overview}</Description>
         <Button>
           <i className="fa-solid fa-play"></i> Watch Now
         </Button>
@@ -125,10 +128,8 @@ const MainShow = ({ movie }) => {
         </Arrow>
       </Details>
       <Image
-        src={`https://image.tmdb.org/t/p/original${
-          movie[0] ? movie[0].backdrop_path : ""
-        }`}
-        alt={movie[0] ? movie[0].original_title : ""}
+        src={`https://image.tmdb.org/t/p/original${movie[randomIndex].backdrop_path}`}
+        alt={movie[randomIndex].original_title}
       />
       <GradientOverlay />
     </Hero>

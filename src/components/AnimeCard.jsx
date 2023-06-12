@@ -12,8 +12,9 @@ const Card = styled.div`
   border-radius: 8px;
   padding: 16px;
   transition: 0.2s ease-in-out;
+  cursor: crosshair;
   &:hover {
-    filter: drop-shadow(0px 0px 10px yellow);
+    filter: drop-shadow(0px 0px 10px #9b12a5);
   }
 `;
 
@@ -26,6 +27,9 @@ const Poster = styled.img`
 const Title = styled.h2`
   margin-bottom: 2px;
   font-size: 1rem;
+  ${Card}:hover & {
+    text-decoration: underline;
+  }
 `;
 
 const ReleaseDate = styled.p`
@@ -34,9 +38,9 @@ const ReleaseDate = styled.p`
 
 const AnimeCard = ({ anime }) => {
   return (
-    <Card>
-      <Poster src={`${anime ? anime.image : ""}`} alt={anime ? anime.id : ""} />
-      <Title>{anime ? anime.title : ""}</Title>
+    <Card onClick={() => console.log(`this is ${anime.title}`)}>
+      <Poster src={`${anime.image}`} alt={anime.id} />
+      <Title>{anime.title}</Title>
     </Card>
   );
 };

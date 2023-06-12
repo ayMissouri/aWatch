@@ -12,6 +12,7 @@ const Card = styled.div`
   border-radius: 8px;
   padding: 16px;
   transition: 0.2s ease-in-out;
+  cursor: crosshair;
   &:hover {
     filter: drop-shadow(0px 0px 10px yellow);
   }
@@ -26,6 +27,9 @@ const Poster = styled.img`
 const Title = styled.h2`
   margin-bottom: 2px;
   font-size: 1rem;
+  ${Card}:hover & {
+    text-decoration: underline;
+  }
 `;
 
 const ReleaseDate = styled.p`
@@ -34,15 +38,13 @@ const ReleaseDate = styled.p`
 
 const ShowCard = ({ show }) => {
   return (
-    <Card>
+    <Card onClick={() => console.log(`this is ${show.original_name}`)}>
       <Poster
-        src={`https://image.tmdb.org/t/p/original${
-          show ? show.poster_path : ""
-        }`}
-        alt={show ? show.original_name : ""}
+        src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
+        alt={show.original_name}
       />
-      <Title>{show ? show.original_name : ""}</Title>
-      <ReleaseDate>{show ? show.first_air_date : ""}</ReleaseDate>
+      <Title>{show.original_name}</Title>
+      <ReleaseDate>{show.first_air_date}</ReleaseDate>
     </Card>
   );
 };

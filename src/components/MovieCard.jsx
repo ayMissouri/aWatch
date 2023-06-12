@@ -12,6 +12,7 @@ const Card = styled.div`
   border-radius: 8px;
   padding: 16px;
   transition: 0.2s ease-in-out;
+  cursor: crosshair;
   &:hover {
     filter: drop-shadow(0px 0px 10px #c70a46);
   }
@@ -26,6 +27,9 @@ const Poster = styled.img`
 const Title = styled.h2`
   margin-bottom: 2px;
   font-size: 1rem;
+  ${Card}:hover & {
+    text-decoration: underline;
+  }
 `;
 
 const ReleaseDate = styled.p`
@@ -35,15 +39,13 @@ const ReleaseDate = styled.p`
 const MovieCard = ({ movie }) => {
   // console.log(movie);
   return (
-    <Card>
+    <Card onClick={() => console.log(`this is ${movie.title}`)}>
       <Poster
-        src={`https://image.tmdb.org/t/p/original${
-          movie ? movie.poster_path : ""
-        }`}
-        alt={movie ? movie.title : ""}
+        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+        alt={movie.title}
       />
-      <Title>{movie ? movie.title : ""}</Title>
-      <ReleaseDate>{movie ? movie.release_date : ""}</ReleaseDate>
+      <Title>{movie.title}</Title>
+      <ReleaseDate>{movie.release_date}</ReleaseDate>
     </Card>
   );
 };
