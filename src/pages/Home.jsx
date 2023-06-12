@@ -13,6 +13,17 @@ import axios from "axios";
 import Slider from "../components/Slider/Slider";
 import SliderTv from "../components/Slider/SliderTV";
 import SliderAnime from "../components/Slider/SliderAnime";
+import Lottie from "react-lottie";
+import * as loading from "../../public/meteorite.json";
+
+const loadingOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loading.default,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const SliderTitle = styled.div`
   display: flex;
@@ -49,10 +60,19 @@ const AnimeTitle = styled.h2`
   -webkit-text-fill-color: transparent;
 `;
 
+const LoadingDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+`;
+
 const Home = () => {
   const [movies, setMovies] = useState(null);
   const [shows, setShows] = useState(null);
   const [animes, setAnimes] = useState(null);
+  let [isLoading, setIsLoading] = useState(0);
 
   useEffect(() => {
     const url =
@@ -61,6 +81,7 @@ const Home = () => {
       try {
         const data = await axios.get(url);
         setMovies(data.data.results);
+        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -78,6 +99,7 @@ const Home = () => {
       try {
         const data = await axios.get(url);
         setShows(data.data.results);
+        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -94,6 +116,7 @@ const Home = () => {
       try {
         const data = await axios.get(url, { params: { page: 1 } });
         setAnimes(data.data.results);
+        setIsLoading(isLoading++);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -106,32 +129,41 @@ const Home = () => {
 
   return (
     <Main>
-      <Hero>
-        <MainShow movie={movies ? movies : {}}></MainShow>
-      </Hero>
-      <List>
-        <MoviesSlider>
-          <SliderTitle>
-            <MoviesIcon className="fa-solid fa-fire"></MoviesIcon>
-            <MoviesTitle>Movies</MoviesTitle>
-          </SliderTitle>
-          <Slider movies={movies}></Slider>
-        </MoviesSlider>
-        <ShowsSlider>
-          <SliderTitle>
-            <ShowsIcon className="fa-solid fa-bolt-lightning"></ShowsIcon>
-            <ShowsTitle>Shows</ShowsTitle>
-          </SliderTitle>
-          <SliderTv shows={shows}></SliderTv>
-        </ShowsSlider>
-        <AnimeSlider>
-          <SliderTitle>
-            <h2>👹</h2>
-            <AnimeTitle> Anime</AnimeTitle>
-          </SliderTitle>
-          <SliderAnime animes={animes}></SliderAnime>
-        </AnimeSlider>
-      </List>
+      {!movies || !shows || !animes ? (
+        <LoadingDiv>
+          <Lottie options={loadingOptions} height={250} width={250} />
+          <h1>Loading...</h1>
+        </LoadingDiv>
+      ) : (
+        <>
+          <Hero>
+            <MainShow movie={movies ? movies : {}}></MainShow>
+          </Hero>
+          <List>
+            <MoviesSlider>
+              <SliderTitle>
+                <MoviesIcon className="fa-solid fa-fire"></MoviesIcon>
+                <MoviesTitle>Movies</MoviesTitle>
+              </SliderTitle>
+              <Slider movies={movies}></Slider>
+            </MoviesSlider>
+            <ShowsSlider>
+              <SliderTitle>
+                <ShowsIcon className="fa-solid fa-bolt-lightning"></ShowsIcon>
+                <ShowsTitle>Shows</ShowsTitle>
+              </SliderTitle>
+              <SliderTv shows={shows}></SliderTv>
+            </ShowsSlider>
+            <AnimeSlider>
+              <SliderTitle>
+                <h2>👹</h2>
+                <AnimeTitle> Anime</AnimeTitle>
+              </SliderTitle>
+              <SliderAnime animes={animes}></SliderAnime>
+            </AnimeSlider>
+          </List>
+        </>
+      )}
     </Main>
   );
 };

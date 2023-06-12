@@ -121,7 +121,7 @@ const MainShow = ({ movie }) => {
           <i className="fa-solid fa-play"></i> Watch Now
         </Button>
         <Arrow>
-          <i class="fa-solid fa-chevron-down fa-bounce"></i>
+          <i className="fa-solid fa-chevron-down fa-bounce"></i>
         </Arrow>
       </Details>
       <Image
