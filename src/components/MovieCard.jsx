@@ -39,7 +39,7 @@ const ReleaseDate = styled.p`
 const MovieCard = ({ movie }) => {
   // console.log(movie);
   return (
-    <Card onClick={() => console.log(`this is ${movie.title}`)}>
+    <Card onClick={() => console.log(movie)}>
       <Poster
         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
         alt={movie.title}

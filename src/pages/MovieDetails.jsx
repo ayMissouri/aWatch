@@ -69,13 +69,49 @@ const Poster = styled.img`
 
 const Title = styled.h1`
   margin-left: 7rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
   }
+`;
+
+const TagLine = styled.p`
+  margin-left: 7rem;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  color: #aaaaaa;
+  transition: 0.5s ease-in-out;
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
+`;
+
+const Genres = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin-left: 7rem;
+  margin-bottom: 1rem;
+  transition: 0.5s ease-in-out;
+  overflow: auto;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
+`;
+
+const GenreLi = styled.li`
+  background: #c70a4630;
+  color: #ff0051;
+  /* font-weight: bold; */
+  border-radius: 25px;
+  margin-left: 0.5rem;
+  margin-top: 0.2rem;
+  padding: 0.3rem;
+  white-space: nowrap;
 `;
 
 const Description = styled.p`
@@ -89,6 +125,13 @@ const Description = styled.p`
   }
 `;
 
+const Rating = styled.div``;
+
+const Star = styled.i`
+  color: yellow;
+  font-size: 24px;
+`;
+
 const LoadingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,10 +140,19 @@ const LoadingDiv = styled.div`
   height: 80vh;
 `;
 
+const loadingOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loading.default,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
+
 const MovieDetails = () => {
   const id = 569094;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   console.log(data);
 
@@ -134,7 +186,16 @@ const MovieDetails = () => {
             />
             <Info>
               <Title>{data.title}</Title>
+              <TagLine>{data.tagline}</TagLine>
+              <Genres>
+                {data.genres?.map((genre) => {
+                  return <GenreLi key={genre.name}>{genre.name}</GenreLi>;
+                })}
+              </Genres>
               <Description>{data.overview}</Description>
+              <Rating>
+                <Star class="fa-solid fa-star"></Star>
+              </Rating>
             </Info>
           </Details>
           <Image
