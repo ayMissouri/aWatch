@@ -75,7 +75,7 @@ const Home = () => {
 
   useEffect(() => {
     const url =
-      "https://api.themoviedb.org/3/discover/movie?api_key=db319c6e116fed7f38628e30ff441b3e&with_genres=&with_networks=&with_keywords=&language=en-US&page=1&include_adult=false&sort_by=popularity.desc&watch_region=US&with_watch_monetization_types=flatrate|free|ads|rent|buy";
+      "https://api.themoviedb.org/3/discover/movie?api_key=db319c6e116fed7f38628e30ff441b3e&with_genres=&with_networks=&with_keywords=&language=en-US&page=1&include_adult=false&sort_by=popularity.desc&watch_region=US";
     const getPopularMovies = async () => {
       try {
         const data = await axios.get(url);
