@@ -18,6 +18,9 @@ const Image = styled.img`
   position: absolute;
   z-index: -1;
   top: 0;
+  @media screen and (max-width: 770px) {
+    display: none;
+  }
 `;
 
 const GradientOverlay = styled.div`
@@ -51,6 +54,10 @@ const Details = styled.div`
   @media screen and (max-width: 280px) {
     margin-top: 0rem;
   }
+  @media screen and (max-width: 770px) {
+    flex-direction: column;
+    margin-top: 0;
+  }
 `;
 
 const Info = styled.div`
@@ -60,11 +67,55 @@ const Info = styled.div`
   /* align-items: center; */
   /* text-align: center; */
   max-width: 50%;
+  @media screen and (max-width: 770px) {
+    max-width: 95%;
+  }
+`;
+
+const PosterContainer = styled.div`
+  position: relative;
 `;
 
 const Poster = styled.img`
   width: 300px;
   height: 424px;
+  object-fit: cover;
+  @media screen and (max-width: 770px) {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const MobilePlayButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.204);
+  border: none;
+  border-radius: 50%;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1;
+`;
+
+const PosterGradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0) 10%,
+    rgba(13, 13, 13, 0.266) 50%,
+    rgb(13, 13, 13) 100%
+  );
 `;
 
 const Title = styled.h1`
@@ -76,6 +127,11 @@ const Title = styled.h1`
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
   }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
+    font-size: 22px;
+    margin-top: 1rem;
+  }
 `;
 
 const TagLine = styled.p`
@@ -86,6 +142,10 @@ const TagLine = styled.p`
   transition: 0.5s ease-in-out;
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
+  }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
+    font-size: 16px;
   }
 `;
 
@@ -100,6 +160,9 @@ const Genres = styled.ul`
   flex-wrap: wrap;
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
+  }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
   }
 `;
 
@@ -124,6 +187,9 @@ const Description = styled.p`
     margin-left: 2rem;
     font-size: 16px;
   }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
+  }
 `;
 
 const Rating = styled.div`
@@ -137,6 +203,14 @@ const Rating = styled.div`
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
   }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const PlayButton = styled.button`
@@ -154,11 +228,46 @@ const PlayButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border: none;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    transition: 0.2s ease-in-out;
   }
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
+  }
+  @media screen and (max-width: 770px) {
+    display: none;
+  }
+`;
+
+const BookmarkButton = styled.button`
+  width: 186px;
+  height: 48px;
+  margin-left: 1rem;
+  transition: 0.5s ease-in-out;
+  border-radius: 12px;
+  color: #ffffff;
+  background: black;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid white;
+  &:hover {
+    transform: scale(1.03);
+    transition: 0.2s ease-in-out;
+  }
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
+  @media screen and (max-width: 770px) {
+    width: 95%;
+    margin-left: auto;
   }
 `;
 
@@ -210,13 +319,19 @@ const MovieDetails = () => {
       ) : (
         <Hero>
           <Details>
-            <Poster
-              src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-              alt={data.original_title}
-            />
+            <PosterContainer>
+              <Poster
+                src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+                alt={data.original_title}
+              />
+              <PosterGradientOverlay />
+              <MobilePlayButton onClick={() => console.log("play")}>
+                <i class="fa-solid fa-play"></i>
+              </MobilePlayButton>
+            </PosterContainer>
             <Info>
               <Title>{data.title}</Title>
-              <TagLine>{data.tagline}</TagLine>
+              <TagLine>{data.tagline ? <p>"{data.tagline}"</p> : ""}</TagLine>
               <Genres>
                 {data.genres?.map((genre) => {
                   return <GenreLi key={genre.name}>{genre.name}</GenreLi>;
@@ -238,13 +353,22 @@ const MovieDetails = () => {
                   </span>
                 </p>
               </Rating>
-              <PlayButton>
-                <i
-                  class="fa-solid fa-play"
-                  style={{ color: "#000", marginRight: "5px" }}
-                ></i>
-                Play now
-              </PlayButton>
+              <Buttons>
+                <PlayButton>
+                  <i
+                    class="fa-solid fa-play"
+                    style={{ color: "#000", marginRight: "5px" }}
+                  ></i>
+                  Play now
+                </PlayButton>
+                <BookmarkButton>
+                  <i
+                    class="fa-regular fa-bookmark"
+                    style={{ marginRight: "5px" }}
+                  ></i>
+                  Bookmark
+                </BookmarkButton>
+              </Buttons>
             </Info>
           </Details>
           <Image
