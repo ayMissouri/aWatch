@@ -314,18 +314,18 @@ const loadingOptions = {
   },
 };
 
-const ShowDetails = () => {
-  const id = 60735;
+const AnimeDetails = () => {
+  const id = 14719;
 
   const [data, setData] = useState(null);
 
   console.log(data);
 
   useEffect(() => {
-    const url = `https://api.amissouri.uk/meta/tmdb/info/${id}`;
+    const url = `https://api.amissouri.uk/meta/anilist/info/${id}`;
     const getMovieInfo = async () => {
       try {
-        const { data } = await axios.get(url, { params: { type: "tv" } });
+        const { data } = await axios.get(url);
         setData(data);
       } catch (err) {
         throw new Error(err.message);
@@ -347,14 +347,14 @@ const ShowDetails = () => {
           <Hero>
             <Details>
               <PosterContainer>
-                <Poster src={data.image} alt={data.title} />
+                <Poster src={data.image} alt={data.title.english} />
                 <PosterGradientOverlay />
                 <MobilePlayButton onClick={() => console.log("play")}>
                   <i className="fa-solid fa-play"></i>
                 </MobilePlayButton>
               </PosterContainer>
               <Info>
-                <Title>{data.title}</Title>
+                <Title>{data.title.english}</Title>
                 <TagLine>
                   {data.tagline ? (
                     <p style={{ color: "#b9b9b9" }}>"{data.tagline}"</p>
@@ -375,7 +375,7 @@ const ShowDetails = () => {
                   >
                     {" "}
                   </i>
-                  <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
+                  <p> {data.rating}/100 </p>
                 </Rating>
                 <Buttons>
                   <PlayButton>
@@ -395,7 +395,7 @@ const ShowDetails = () => {
                 </Buttons>
               </Info>
             </Details>
-            <Image src={data.cover} alt={data.title} />
+            <Image src={data.cover} alt={data.title.english} />
             <GradientOverlay />
             {/* <TrailerDiv>
               <TrailerTitle>Trailer</TrailerTitle>
@@ -407,4 +407,4 @@ const ShowDetails = () => {
   );
 };
 
-export default ShowDetails;
+export default AnimeDetails;

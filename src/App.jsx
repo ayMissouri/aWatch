@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Discover from "./pages/Discover";
 import MovieDetails from "./pages/MovieDetails";
 import ShowDetails from "./pages/ShowDetails";
+import AnimeDetails from "./pages/AnimeDetails";
 import styled from "styled-components";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/movie" element={<MovieDetails />} />
         <Route path="/show" element={<ShowDetails />} />
+        <Route path="/anime" element={<AnimeDetails />} />
       </Routes>
       {/* </Scrollbar> */}
     </Router>

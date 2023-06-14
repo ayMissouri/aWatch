@@ -38,9 +38,9 @@ const ReleaseDate = styled.p`
 
 const AnimeCard = ({ anime }) => {
   return (
-    <Card onClick={() => console.log(`this is ${anime.title}`)}>
+    <Card onClick={() => console.log(`this is ${anime.title.english}`)}>
       <Poster src={`${anime.image}`} alt={anime.id} />
-      <Title>{anime.title}</Title>
+      <Title>{anime.title.english}</Title>
     </Card>
   );
 };

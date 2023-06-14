@@ -108,10 +108,10 @@ const Home = () => {
   // console.log(shows)
 
   useEffect(() => {
-    const url = "https://api.amissouri.uk/anime/gogoanime/top-airing";
+    const url = "https://api.amissouri.uk/meta/anilist/trending";
     const getPopularAnimes = async () => {
       try {
-        const data = await axios.get(url, { params: { page: 1 } });
+        const data = await axios.get(url);
         setAnimes(data.data.results);
       } catch (err) {
         throw new Error(err.message);
@@ -121,7 +121,7 @@ const Home = () => {
     getPopularAnimes();
   }, []);
 
-  // console.log(shows)
+  console.log(animes);
 
   return (
     <>

@@ -5,9 +5,10 @@ import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
 
 const Hero = styled.div`
+  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100vh;
 `;
 
@@ -39,12 +40,10 @@ const GradientOverlay = styled.div`
 `;
 
 const Details = styled.div`
-  margin-top: 7rem;
+  /* margin-top: 7rem; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* align-items: center; */
-  /* text-align: center; */
   @media screen and (max-height: 667px) {
     margin-top: 5rem;
   }
@@ -63,9 +62,6 @@ const Details = styled.div`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-items: center; */
-  /* align-items: center; */
-  /* text-align: center; */
   max-width: 50%;
   @media screen and (max-width: 770px) {
     max-width: 95%;
@@ -80,6 +76,7 @@ const Poster = styled.img`
   width: 300px;
   height: 424px;
   object-fit: cover;
+  border-radius: 7px;
   @media screen and (max-width: 770px) {
     width: 100%;
     height: auto;
@@ -102,6 +99,9 @@ const MobilePlayButton = styled.button`
   font-size: 35px;
   cursor: pointer;
   z-index: 1;
+  @media screen and (min-width: 771px) {
+    display: none;
+  }
 `;
 
 const PosterGradientOverlay = styled.div`
@@ -116,6 +116,9 @@ const PosterGradientOverlay = styled.div`
     rgba(13, 13, 13, 0.266) 50%,
     rgb(13, 13, 13) 100%
   );
+  @media screen and (min-width: 771px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h1`
@@ -137,8 +140,7 @@ const Title = styled.h1`
 const TagLine = styled.p`
   margin-left: 7rem;
   margin-bottom: 1rem;
-  font-size: 18px;
-  color: #aaaaaa;
+  font-size: 16px;
   transition: 0.5s ease-in-out;
   @media screen and (max-width: 1020px) {
     margin-left: 2rem;
@@ -172,8 +174,8 @@ const GenreLi = styled.li`
   font-weight: 450;
   border-radius: 25px;
   margin-left: 0.5rem;
-  margin-top: 0.2rem;
-  padding: 0.3rem;
+  margin-top: 0.3rem;
+  padding: 0.2rem 0.7rem 0.2rem 0.7rem;
   white-space: nowrap;
 `;
 
@@ -271,6 +273,30 @@ const BookmarkButton = styled.button`
   }
 `;
 
+const TrailerDiv = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: row;
+  /* margin-left: 7rem; */
+  justify-content: center;
+`;
+
+const TrailerTitle = styled.h1`
+  /* margin-left: 7rem; */
+  margin-bottom: 0.3rem;
+  position: relative;
+  transition: 0.5s ease-in-out;
+  z-index: 0;
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
+  @media screen and (max-width: 770px) {
+    margin-left: 1rem;
+    font-size: 22px;
+    margin-top: 1rem;
+  }
+`;
+
 const LoadingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -296,11 +322,11 @@ const MovieDetails = () => {
   console.log(data);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=04c35731a5ee918f014970082a0088b1`;
+    const url = `https://api.amissouri.uk/meta/tmdb/info/${id}`;
     const getMovieInfo = async () => {
       try {
-        const data = await axios.get(url);
-        setData(data.data);
+        const { data } = await axios.get(url, { params: { type: "movie" } });
+        setData(data);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -317,66 +343,65 @@ const MovieDetails = () => {
           <h1>Loading...</h1>
         </LoadingDiv>
       ) : (
-        <Hero>
-          <Details>
-            <PosterContainer>
-              <Poster
-                src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-                alt={data.original_title}
-              />
-              <PosterGradientOverlay />
-              <MobilePlayButton onClick={() => console.log("play")}>
-                <i class="fa-solid fa-play"></i>
-              </MobilePlayButton>
-            </PosterContainer>
-            <Info>
-              <Title>{data.title}</Title>
-              <TagLine>{data.tagline ? <p>"{data.tagline}"</p> : ""}</TagLine>
-              <Genres>
-                {data.genres?.map((genre) => {
-                  return <GenreLi key={genre.name}>{genre.name}</GenreLi>;
-                })}
-              </Genres>
-              <Description>{data.overview}</Description>
-              <Rating>
-                <i
-                  class="fa-solid fa-star"
-                  style={{ color: "#ffdd00", marginRight: "10px" }}
-                >
-                  {" "}
-                </i>
-                <p>
-                  {" "}
-                  {parseFloat(data.vote_average.toFixed(1))}/10{" "}
-                  <span style={{ fontSize: "15px", color: "darkgrey" }}>
-                    ({data.vote_count})
-                  </span>
-                </p>
-              </Rating>
-              <Buttons>
-                <PlayButton>
+        <>
+          <Hero>
+            <Details>
+              <PosterContainer>
+                <Poster src={data.image} alt={data.title} />
+                <PosterGradientOverlay />
+                <MobilePlayButton onClick={() => console.log("play")}>
+                  <i className="fa-solid fa-play"></i>
+                </MobilePlayButton>
+              </PosterContainer>
+              <Info>
+                <Title>{data.title}</Title>
+                <TagLine>
+                  {data.tagline ? (
+                    <p style={{ color: "#b9b9b9" }}>"{data.tagline}"</p>
+                  ) : (
+                    ""
+                  )}
+                </TagLine>
+                <Genres>
+                  {data.genres?.map((genre) => {
+                    return <GenreLi key={genre}>{genre}</GenreLi>;
+                  })}
+                </Genres>
+                <Description>{data.description}</Description>
+                <Rating>
                   <i
-                    class="fa-solid fa-play"
-                    style={{ color: "#000", marginRight: "5px" }}
-                  ></i>
-                  Play now
-                </PlayButton>
-                <BookmarkButton>
-                  <i
-                    class="fa-regular fa-bookmark"
-                    style={{ marginRight: "5px" }}
-                  ></i>
-                  Bookmark
-                </BookmarkButton>
-              </Buttons>
-            </Info>
-          </Details>
-          <Image
-            src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
-            alt={data.original_title}
-          />
-          <GradientOverlay />
-        </Hero>
+                    className="fa-solid fa-star"
+                    style={{ color: "#ffdd00", marginRight: "10px" }}
+                  >
+                    {" "}
+                  </i>
+                  <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
+                </Rating>
+                <Buttons>
+                  <PlayButton>
+                    <i
+                      className="fa-solid fa-play"
+                      style={{ color: "#000", marginRight: "5px" }}
+                    ></i>
+                    Play now
+                  </PlayButton>
+                  <BookmarkButton>
+                    <i
+                      className="fa-regular fa-bookmark"
+                      style={{ marginRight: "5px" }}
+                    ></i>
+                    Bookmark
+                  </BookmarkButton>
+                </Buttons>
+              </Info>
+            </Details>
+            <Image src={data.cover} alt={data.title} />
+            <GradientOverlay />
+            {/* <TrailerDiv>
+              <TrailerTitle>Trailer</TrailerTitle>
+            </TrailerDiv> */}
+          </Hero>
+        </>
       )}
     </>
   );
