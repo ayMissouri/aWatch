@@ -69,7 +69,7 @@ const Poster = styled.img`
 
 const Title = styled.h1`
   margin-left: 7rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
@@ -104,9 +104,9 @@ const Genres = styled.ul`
 `;
 
 const GenreLi = styled.li`
-  background: #c70a4630;
+  background: #c70a4619;
   color: #ff0051;
-  /* font-weight: bold; */
+  font-weight: 450;
   border-radius: 25px;
   margin-left: 0.5rem;
   margin-top: 0.2rem;
@@ -116,6 +116,7 @@ const GenreLi = styled.li`
 
 const Description = styled.p`
   margin-left: 7rem;
+  margin-bottom: 1.5rem;
   transition: 0.5s ease-in-out;
   font-size: 18px;
   color: #dfdfdf;
@@ -125,11 +126,40 @@ const Description = styled.p`
   }
 `;
 
-const Rating = styled.div``;
-
-const Star = styled.i`
-  color: yellow;
+const Rating = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 7rem;
+  margin-bottom: 1.5rem;
+  transition: 0.5s ease-in-out;
   font-size: 24px;
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
+`;
+
+const PlayButton = styled.button`
+  width: 186px;
+  height: 48px;
+  margin-left: 7rem;
+  transition: 0.5s ease-in-out;
+  border-radius: 12px;
+  color: black;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 1020px) {
+    margin-left: 2rem;
+  }
 `;
 
 const LoadingDiv = styled.div`
@@ -194,8 +224,27 @@ const MovieDetails = () => {
               </Genres>
               <Description>{data.overview}</Description>
               <Rating>
-                <Star class="fa-solid fa-star"></Star>
+                <i
+                  class="fa-solid fa-star"
+                  style={{ color: "#ffdd00", marginRight: "10px" }}
+                >
+                  {" "}
+                </i>
+                <p>
+                  {" "}
+                  {parseFloat(data.vote_average.toFixed(1))}/10{" "}
+                  <span style={{ fontSize: "15px", color: "darkgrey" }}>
+                    ({data.vote_count})
+                  </span>
+                </p>
               </Rating>
+              <PlayButton>
+                <i
+                  class="fa-solid fa-play"
+                  style={{ color: "#000", marginRight: "5px" }}
+                ></i>
+                Play now
+              </PlayButton>
             </Info>
           </Details>
           <Image
