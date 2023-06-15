@@ -191,6 +191,7 @@ const Description = styled.p`
   }
   @media screen and (max-width: 770px) {
     margin-left: 1rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -275,10 +276,21 @@ const BookmarkButton = styled.button`
 
 const TrailerDiv = styled.div`
   display: flex;
-  margin-top: 2rem;
   flex-direction: row;
-  /* margin-left: 7rem; */
   justify-content: center;
+  margin-bottom: 2rem;
+  @media screen and (max-width: 770px) {
+    margin-top: 22rem;
+  }
+  @media screen and (max-width: 700px) {
+    margin-top: 20rem;
+  }
+  @media screen and (max-width: 600px) {
+    margin-top: 15rem;
+  }
+  @media screen and (max-width: 500px) {
+    margin-top: 10rem;
+  }
 `;
 
 const TrailerTitle = styled.h1`
@@ -287,11 +299,7 @@ const TrailerTitle = styled.h1`
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
-  @media screen and (max-width: 1020px) {
-    margin-left: 2rem;
-  }
   @media screen and (max-width: 770px) {
-    margin-left: 1rem;
     font-size: 22px;
     margin-top: 1rem;
   }
@@ -397,10 +405,10 @@ const AnimeDetails = () => {
             </Details>
             <Image src={data.cover} alt={data.title.english} />
             <GradientOverlay />
-            {/* <TrailerDiv>
-              <TrailerTitle>Trailer</TrailerTitle>
-            </TrailerDiv> */}
           </Hero>
+          <TrailerDiv>
+            <TrailerTitle>Trailer</TrailerTitle>
+          </TrailerDiv>
         </>
       )}
     </>

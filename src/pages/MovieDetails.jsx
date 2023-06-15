@@ -3,13 +3,18 @@ import styled from "styled-components";
 import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
+import YouTube from "react-youtube";
 
 const Hero = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  height: 85vh;
+  margin-bottom: 50px;
+  @media screen and (max-width: 770px) {
+    height: auto;
+  }
 `;
 
 const Image = styled.img`
@@ -174,7 +179,6 @@ const GenreLi = styled.li`
   font-weight: 450;
   border-radius: 25px;
   margin-left: 0.5rem;
-  margin-top: 0.3rem;
   padding: 0.2rem 0.7rem 0.2rem 0.7rem;
   white-space: nowrap;
 `;
@@ -275,27 +279,23 @@ const BookmarkButton = styled.button`
 
 const TrailerDiv = styled.div`
   display: flex;
-  margin-top: 2rem;
-  flex-direction: row;
-  /* margin-left: 7rem; */
+  flex-direction: column;
   justify-content: center;
+  align-items: center; /* Add this line to center the content vertically */
 `;
 
 const TrailerTitle = styled.h1`
-  /* margin-left: 7rem; */
   margin-bottom: 0.3rem;
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
-  @media screen and (max-width: 1020px) {
-    margin-left: 2rem;
-  }
   @media screen and (max-width: 770px) {
-    margin-left: 1rem;
     font-size: 22px;
     margin-top: 1rem;
   }
 `;
+
+const YouTubeWrapper = styled.div``;
 
 const LoadingDiv = styled.div`
   display: flex;
@@ -397,10 +397,19 @@ const MovieDetails = () => {
             </Details>
             <Image src={data.cover} alt={data.title} />
             <GradientOverlay />
-            {/* <TrailerDiv>
-              <TrailerTitle>Trailer</TrailerTitle>
-            </TrailerDiv> */}
           </Hero>
+          {/* <TrailerDiv>
+            <TrailerTitle>Trailer</TrailerTitle>
+            <YouTubeWrapper>
+              <YouTube
+                videoId={data.trailer.id ? data.trailer.id : "dQw4w9WgXcQ"}
+                opts={{
+                  width: "854px",
+                  height: "480px",
+                }}
+              />
+            </YouTubeWrapper>
+          </TrailerDiv> */}
         </>
       )}
     </>
