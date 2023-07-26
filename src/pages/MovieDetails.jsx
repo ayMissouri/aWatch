@@ -4,6 +4,7 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
 import { useParams } from "react-router-dom";
+import VideoPlayer from "../components/VideoPlayer";
 
 const Hero = styled.div`
   position: relative;
@@ -85,27 +86,6 @@ const Poster = styled.img`
   @media screen and (max-width: 770px) {
     width: 100%;
     height: auto;
-  }
-`;
-
-const MobilePlayButton = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0.204);
-  border: none;
-  border-radius: 50%;
-  font-size: 35px;
-  cursor: pointer;
-  z-index: 1;
-  @media screen and (min-width: 771px) {
-    display: none;
   }
 `;
 
@@ -345,8 +325,10 @@ const MovieDetails = () => {
   const id = params.movieid;
 
   const [data, setData] = useState(null);
+  const [streamingData, setStreamingData] = useState(null);
 
   // console.log(data);
+  // console.log(streamingData);
 
   useEffect(() => {
     const url = `https://api.amissouri.uk/meta/tmdb/info/${id}`;
@@ -362,6 +344,24 @@ const MovieDetails = () => {
     getMovieInfo();
   }, []);
 
+  useEffect(() => {
+    if (data != null) {
+      const url = `https://api.consumet.org/meta/tmdb/watch/${data.episodeId}`;
+      const getStreamingData = async () => {
+        try {
+          const { data: streamingData } = await axios.get(url, {
+            params: { id: data.id },
+          });
+          setStreamingData(streamingData);
+        } catch (err) {
+          throw new Error(err.message);
+        }
+      };
+
+      getStreamingData();
+    }
+  }, [data]);
+
   return (
     <>
       {!data ? (
@@ -376,9 +376,6 @@ const MovieDetails = () => {
               <PosterContainer>
                 <Poster src={data.image} alt={data.title} />
                 <PosterGradientOverlay />
-                <MobilePlayButton onClick={() => console.log("play")}>
-                  <i className="fa-solid fa-play"></i>
-                </MobilePlayButton>
               </PosterContainer>
               <Info>
                 <Title>{data.title}</Title>
@@ -405,13 +402,8 @@ const MovieDetails = () => {
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  <PlayButton>
-                    <i
-                      className="fa-solid fa-play"
-                      style={{ color: "#000", marginRight: "5px" }}
-                    ></i>
-                    Play now
-                  </PlayButton>
+                  {/* PLAY BUTTON */}
+                  <VideoPlayer streamingData={streamingData} />
                   <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"

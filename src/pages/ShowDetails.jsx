@@ -4,6 +4,7 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
 import { useParams } from "react-router-dom";
+import VideoPlayer from "../components/VideoPlayer";
 
 const Hero = styled.div`
   position: relative;
@@ -85,27 +86,6 @@ const Poster = styled.img`
   @media screen and (max-width: 770px) {
     width: 100%;
     height: auto;
-  }
-`;
-
-const MobilePlayButton = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0.204);
-  border: none;
-  border-radius: 50%;
-  font-size: 35px;
-  cursor: pointer;
-  z-index: 1;
-  @media screen and (min-width: 771px) {
-    display: none;
   }
 `;
 
@@ -217,34 +197,6 @@ const Rating = styled.div`
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const PlayButton = styled.button`
-  width: 186px;
-  height: 48px;
-  margin-left: 7rem;
-  transition: 0.5s ease-in-out;
-  border-radius: 12px;
-  color: black;
-  font-weight: 500;
-  font-size: 1.2rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: none;
-  &:hover {
-    transform: scale(1.03);
-    transition: 0.2s ease-in-out;
-  }
-  @media screen and (max-width: 1020px) {
-    margin-left: 2rem;
-  }
-  @media screen and (max-width: 770px) {
-    display: none;
-  }
 `;
 
 const BookmarkButton = styled.button`
@@ -372,9 +324,6 @@ const ShowDetails = () => {
               <PosterContainer>
                 <Poster src={data.image} alt={data.title} />
                 <PosterGradientOverlay />
-                <MobilePlayButton onClick={() => console.log("play")}>
-                  <i className="fa-solid fa-play"></i>
-                </MobilePlayButton>
               </PosterContainer>
               <Info>
                 <Title>{data.title}</Title>
@@ -401,13 +350,7 @@ const ShowDetails = () => {
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  <PlayButton>
-                    <i
-                      className="fa-solid fa-play"
-                      style={{ color: "#000", marginRight: "5px" }}
-                    ></i>
-                    Play now
-                  </PlayButton>
+                  <VideoPlayer />
                   <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"

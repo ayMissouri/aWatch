@@ -12,6 +12,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@vidstack/react": "^0.6.13",
     "axios": "^1.4.0",
     "font-awesome-icons": "^1.6.0",
     "framer-motion": "^10.12.16",
@@ -21,10 +22,12 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "react-lottie": "^1.2.3",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.12.1",
     "react-youtube": "^10.1.0",
     "styled-components": "^5.3.10",
-    "swiper": "^9.3.2"
+    "swiper": "^9.3.2",
+    "vidstack": "^0.6.13"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
