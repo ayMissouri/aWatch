@@ -298,7 +298,7 @@ const AnimeDetails = () => {
 
   const [data, setData] = useState(null);
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     const url = `https://api.amissouri.uk/meta/anilist/info/${id}`;

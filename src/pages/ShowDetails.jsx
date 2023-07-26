@@ -281,7 +281,8 @@ const TrailerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Add this line to center the content vertically */
+  align-items: center;
+  margin-bottom: 100px;
 `;
 
 const TrailerTitle = styled.h1`
@@ -341,7 +342,7 @@ const ShowDetails = () => {
 
   const [data, setData] = useState(null);
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     const url = `https://api.amissouri.uk/meta/tmdb/info/${id}`;

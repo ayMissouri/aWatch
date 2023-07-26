@@ -113,7 +113,7 @@ const Arrow = styled.div`
 `;
 
 const randomIndex = Math.floor(Math.random() * 9);
-console.log(randomIndex);
+// console.log(randomIndex);
 
 const MainShow = ({ movie }) => {
   const navigate = useNavigate();
