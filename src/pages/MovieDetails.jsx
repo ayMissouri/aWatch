@@ -281,7 +281,12 @@ const TrailerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Add this line to center the content vertically */
+  align-items: center;
+  margin-bottom: 100px;
+  @media screen and (max-width: 770px) {
+    display: none;
+    /* max-width: 240px; */
+  }
 `;
 
 const TrailerTitle = styled.h1`
@@ -398,7 +403,7 @@ const MovieDetails = () => {
             <Image src={data.cover} alt={data.title} />
             <GradientOverlay />
           </Hero>
-          {/* <TrailerDiv>
+          <TrailerDiv>
             <TrailerTitle>Trailer</TrailerTitle>
             <YouTubeWrapper>
               <YouTube
@@ -409,7 +414,7 @@ const MovieDetails = () => {
                 }}
               />
             </YouTubeWrapper>
-          </TrailerDiv> */}
+          </TrailerDiv>
         </>
       )}
     </>
