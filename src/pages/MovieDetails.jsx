@@ -10,7 +10,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 85vh;
+  height: 50vh;
   margin-bottom: 50px;
   @media screen and (max-width: 770px) {
     height: auto;
@@ -284,23 +284,44 @@ const TrailerDiv = styled.div`
   align-items: center;
   margin-bottom: 100px;
   @media screen and (max-width: 770px) {
-    display: none;
+    /* display: none; */
     /* max-width: 240px; */
   }
 `;
 
 const TrailerTitle = styled.h1`
-  margin-bottom: 0.3rem;
+  margin-bottom: 2rem;
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
+  text-decoration: underline 1px;
   @media screen and (max-width: 770px) {
     font-size: 22px;
     margin-top: 1rem;
   }
 `;
 
-const YouTubeWrapper = styled.div``;
+const YouTubeWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+  padding-top: 30%;
+  @media screen and (max-width: 770px) {
+    width: 90%;
+    padding-top: 56.25%;
+  }
+`;
+
+const IFrame = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+`;
 
 const LoadingDiv = styled.div`
   display: flex;
@@ -404,14 +425,15 @@ const MovieDetails = () => {
             <GradientOverlay />
           </Hero>
           <TrailerDiv>
-            <TrailerTitle>Trailer</TrailerTitle>
+            <TrailerTitle>Related Videos</TrailerTitle>
             <YouTubeWrapper>
-              <YouTube
-                videoId={data.trailer.id ? data.trailer.id : "dQw4w9WgXcQ"}
-                opts={{
-                  width: "854px",
-                  height: "480px",
-                }}
+              <IFrame
+                className="response"
+                src={
+                  data.trailer.id
+                    ? `https://www.youtube.com/embed/${data.trailer.id}`
+                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                }
               />
             </YouTubeWrapper>
           </TrailerDiv>

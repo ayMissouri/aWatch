@@ -293,18 +293,6 @@ const TrailerDiv = styled.div`
   }
 `;
 
-const TrailerTitle = styled.h1`
-  /* margin-left: 7rem; */
-  margin-bottom: 0.3rem;
-  position: relative;
-  transition: 0.5s ease-in-out;
-  z-index: 0;
-  @media screen and (max-width: 770px) {
-    font-size: 22px;
-    margin-top: 1rem;
-  }
-`;
-
 const LoadingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -406,9 +394,6 @@ const AnimeDetails = () => {
             <Image src={data.cover} alt={data.title.english} />
             <GradientOverlay />
           </Hero>
-          <TrailerDiv>
-            <TrailerTitle>Trailer</TrailerTitle>
-          </TrailerDiv>
         </>
       )}
     </>
