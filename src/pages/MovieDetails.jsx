@@ -3,15 +3,15 @@ import styled from "styled-components";
 import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
-import YouTube from "react-youtube";
+import { useParams } from "react-router-dom";
 
 const Hero = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 50vh;
-  margin-bottom: 50px;
+  height: 75vh;
+  /* margin-bottom: 50px; */
   @media screen and (max-width: 770px) {
     height: auto;
   }
@@ -341,7 +341,8 @@ const loadingOptions = {
 };
 
 const MovieDetails = () => {
-  const id = 569094;
+  const params = useParams();
+  const id = params.movieid;
 
   const [data, setData] = useState(null);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 {
@@ -37,8 +37,15 @@ const ReleaseDate = styled.p`
 `;
 
 const ShowCard = ({ show }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Redirect to the desired URL.
+    navigate(`/show/${show.id}`);
+  };
+
   return (
-    <Card onClick={() => console.log(`this is ${show.original_name}`)}>
+    <Card onClick={handleCardClick}>
       <Poster
         src={`https://image.tmdb.org/t/p/original${show.poster_path}`}
         alt={show.original_name}

@@ -3,14 +3,15 @@ import styled from "styled-components";
 import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
+import { useParams } from "react-router-dom";
 
 const Hero = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 50vh;
-  margin-bottom: 50px;
+  height: 75vh;
+  /* margin-bottom: 50px; */
   @media screen and (max-width: 770px) {
     height: auto;
   }
@@ -288,6 +289,7 @@ const TrailerTitle = styled.h1`
   position: relative;
   transition: 0.5s ease-in-out;
   z-index: 0;
+  text-decoration: underline 1px;
   @media screen and (max-width: 770px) {
     font-size: 22px;
     margin-top: 1rem;
@@ -334,7 +336,8 @@ const loadingOptions = {
 };
 
 const ShowDetails = () => {
-  const id = 60735;
+  const params = useParams();
+  const id = params.showid;
 
   const [data, setData] = useState(null);
 

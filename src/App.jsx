@@ -49,8 +49,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/movie" element={<MovieDetails />} />
+        <Route path="/movie/:movieid" element={<MovieDetails />} />
         <Route path="/show" element={<ShowDetails />} />
+        <Route path="/show/:showid" element={<ShowDetails />} />
         <Route path="/anime" element={<AnimeDetails />} />
+        <Route path="/anime/:animeid" element={<AnimeDetails />} />
       </Routes>
       {/* </Scrollbar> */}
     </Router>

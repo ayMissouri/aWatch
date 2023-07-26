@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
+import { useParams } from "react-router-dom";
 
 const Hero = styled.div`
   position: relative;
@@ -274,25 +275,6 @@ const BookmarkButton = styled.button`
   }
 `;
 
-const TrailerDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 2rem;
-  @media screen and (max-width: 770px) {
-    margin-top: 22rem;
-  }
-  @media screen and (max-width: 700px) {
-    margin-top: 20rem;
-  }
-  @media screen and (max-width: 600px) {
-    margin-top: 15rem;
-  }
-  @media screen and (max-width: 500px) {
-    margin-top: 10rem;
-  }
-`;
-
 const LoadingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -311,7 +293,8 @@ const loadingOptions = {
 };
 
 const AnimeDetails = () => {
-  const id = 14719;
+  const params = useParams();
+  const id = params.animeid;
 
   const [data, setData] = useState(null);
 

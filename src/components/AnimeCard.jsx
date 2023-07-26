@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 {
@@ -37,8 +37,15 @@ const ReleaseDate = styled.p`
 `;
 
 const AnimeCard = ({ anime }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Redirect to the desired URL.
+    navigate(`/anime/${anime.id}`);
+  };
+
   return (
-    <Card onClick={() => console.log(`this is ${anime.title.english}`)}>
+    <Card onClick={handleCardClick}>
       <Poster src={`${anime.image}`} alt={anime.id} />
       <Title>{anime.title.english}</Title>
     </Card>
