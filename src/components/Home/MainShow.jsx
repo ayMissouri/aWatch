@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Hero = styled.div`
   display: flex;
@@ -115,13 +116,19 @@ const randomIndex = Math.floor(Math.random() * 9);
 console.log(randomIndex);
 
 const MainShow = ({ movie }) => {
-  // console.log(movie);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Redirect to the desired URL.
+    navigate(`/movie/${movie[randomIndex].id}`);
+  };
+
   return (
     <Hero>
       <Details>
         <Title>{movie[randomIndex].original_title}</Title>
         <Description>{movie[randomIndex].overview}</Description>
-        <Button>
+        <Button onClick={handleCardClick}>
           <i className="fa-solid fa-play"></i> Watch Now
         </Button>
         <Arrow>
