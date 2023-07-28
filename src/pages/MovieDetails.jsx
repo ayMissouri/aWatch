@@ -255,6 +255,9 @@ const BookmarkButton = styled.button`
     width: 95%;
     margin-left: auto;
   }
+  & {
+    filter: blur(2px);
+  }
 `;
 
 const TrailerDiv = styled.div`

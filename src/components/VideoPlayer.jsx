@@ -8,8 +8,10 @@ import {
   MediaOutlet,
   MediaPlayer,
   MediaPoster,
+  MediaTime,
 } from "@vidstack/react";
 import "../App.css";
+import VimePlayer from "./VimePlayer";
 
 const PlayButton = styled.button`
   width: 186px;
@@ -60,7 +62,7 @@ const MobilePlayButton = styled.button`
 `;
 
 const VideoPlayer = ({ streamingData }) => {
-  console.log(streamingData);
+  // console.log(streamingData);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -85,11 +87,15 @@ const VideoPlayer = ({ streamingData }) => {
       </PlayButton>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <i className="fa-solid fa-x" onClick={handleCloseModal}></i>
-        <MediaPlayer
+        {/* <MediaPlayer
           title={streamingData ? streamingData.title : " "}
           src={streamingData ? streamingData.sources[3].url : ""}
-          // poster={streamingData ? streamingData.subtitles : ""}
-          // aspect-ratio={16 / 9}
+          aspect-ratio={16 / 9}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+          load="eager"
           crossorigin=""
         >
           <MediaOutlet>
@@ -109,7 +115,12 @@ const VideoPlayer = ({ streamingData }) => {
             })}
           </MediaOutlet>
           <MediaCommunitySkin />
-        </MediaPlayer>
+          {console.log(<MediaTime />)}
+        </MediaPlayer> */}
+        <VimePlayer
+          video={streamingData ? streamingData.sources[3].url : ""}
+          previousTime={240}
+        />
       </Modal>
     </div>
   );
