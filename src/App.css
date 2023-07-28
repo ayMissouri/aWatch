@@ -9,7 +9,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  height: 80%;
+  height: auto;
+
+  @media screen and (max-width: 770px) {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .ReactModalPortal .ReactModal__Overlay.ReactModal__Overlay--after-open {

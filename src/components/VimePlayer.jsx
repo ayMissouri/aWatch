@@ -1,63 +1,48 @@
 import React, { useState, useRef } from "react";
-import { Player, Ui, Hls, DefaultUi } from "@vime/react";
+import { Player } from "react-tuby";
+import "react-tuby/css/main.css";
+import ReactHlsPlayer from "react-hls-player";
+import { useEffect } from "react";
 
-export default function VimePlayer({ video, subtitles, poster, previousTime }) {
-  const player = useRef(null);
-  const [currentTime, setCurrentTime] = useState(previousTime);
+export default function VimePlayer({ video, subtitles, poster }) {
+  const subs = subtitles?.map((item) => {
+    return { lang: item.lang, language: item.lang, file: item.url };
+  });
 
-  const seekForward = () => {
-    setCurrentTime(currentTime + 5);
-  };
+  const ref = useRef(null);
 
-  const enterFullscreen = () => {
-    player.current.enterFullscreen();
-  };
-
-  const onTimeUpdate = (CustomEvent) => {
-    setCurrentTime(CustomEvent.detail);
-  };
-
-  const onFullscreenChange = (CustomEvent) => {
-    const isFullscreen = CustomEvent.detail;
-    // ...
-  };
-
-  // console.log(currentTime);
-
-  const hlsConfig = {
-    mediaTitle: "test",
-  };
+  useEffect(() => {
+    ref.current?.addEventListener("timeupdate", () => {
+      console.log(ref.current?.currentTime);
+    });
+  }, []);
 
   return (
     <Player
-      // controls
-      theme="dark"
-      style={{ "--vm-player-theme": "#e86c8b" }}
+      playerRef={ref}
+      src={[
+        {
+          url: video[3]?.url,
+          quality: "auto",
+        },
+        {
+          url: video[0]?.url,
+          quality: "1080p",
+        },
+        {
+          url: video[1]?.url,
+          quality: "720p",
+        },
+        {
+          url: video[2]?.url,
+          quality: "360p",
+        },
+      ]}
+      subtitles={subs}
       autoplay
-      ref={player}
-      currentTime={currentTime}
-      onVmCurrentTimeChange={onTimeUpdate}
-      onVmFullscreenChange={onFullscreenChange}
+      pictureInPicture
     >
-      <Hls version="latest" config={hlsConfig} poster=" ">
-        <source data-src={video} type="application/x-mpegURL" />
-        {subtitles?.map((item) => {
-          return (
-            <track
-              kind="captions"
-              src={item.url}
-              srcLang={item.lang}
-              label={item.lang}
-              key={item.lang}
-              default
-            ></track>
-          );
-        })}
-      </Hls>
-
-      <Ui>
-        <DefaultUi />
-      </Ui>
+      {(ref, props) => <ReactHlsPlayer playerRef={ref} {...props} />}
     </Player>
   );
 }

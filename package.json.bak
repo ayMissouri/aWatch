@@ -19,15 +19,13 @@
     "react": "^18.2.0",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.2.0",
-    "react-hls-player": "^3.0.7",
     "react-icons": "^4.9.0",
     "react-lottie": "^1.2.3",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.12.1",
-    "react-tuby": "^0.1.24",
     "react-youtube": "^10.1.0",
     "styled-components": "^5.3.10",
-    "swiper": "^9.3.2"
+    "swiper": "^9.3.2",
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

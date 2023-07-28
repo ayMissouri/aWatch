@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import styled from "styled-components";
-import "vidstack/styles/defaults.css";
-import "vidstack/styles/community-skin/video.css";
-import {
-  MediaCommunitySkin,
-  MediaOutlet,
-  MediaPlayer,
-  MediaPoster,
-  MediaTime,
-} from "@vidstack/react";
 import "../App.css";
 import VimePlayer from "./VimePlayer";
 
@@ -61,7 +52,7 @@ const MobilePlayButton = styled.button`
   }
 `;
 
-const VideoPlayer = ({ streamingData }) => {
+const VideoPlayer = ({ streamingData, poster }) => {
   // console.log(streamingData);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -87,39 +78,9 @@ const VideoPlayer = ({ streamingData }) => {
       </PlayButton>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <i className="fa-solid fa-x" onClick={handleCloseModal}></i>
-        {/* <MediaPlayer
-          title={streamingData ? streamingData.title : " "}
-          src={streamingData ? streamingData.sources[3].url : ""}
-          aspect-ratio={16 / 9}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-          load="eager"
-          crossorigin=""
-        >
-          <MediaOutlet>
-            <MediaPoster />
-            {streamingData?.subtitles.map((item) => {
-              // console.log(item.lang);
-              return (
-                <track
-                  kind="captions"
-                  src={item.url}
-                  srcLang={item.lang}
-                  label={item.lang}
-                  key={item.lang}
-                  default
-                ></track>
-              );
-            })}
-          </MediaOutlet>
-          <MediaCommunitySkin />
-          {console.log(<MediaTime />)}
-        </MediaPlayer> */}
         <VimePlayer
-          video={streamingData ? streamingData.sources[3].url : ""}
-          previousTime={240}
+          video={streamingData ? streamingData.sources : ""}
+          subtitles={streamingData ? streamingData.subtitles : ""}
         />
       </Modal>
     </div>
