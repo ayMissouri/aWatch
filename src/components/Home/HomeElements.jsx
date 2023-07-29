@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   /* background: #212121; */
-  height: 200vh;
+  /* height: 200vh; */
 `;
 
 export const Hero = styled.div`
