@@ -9,6 +9,7 @@ import MovieDetails from "./pages/MovieDetails";
 import ShowDetails from "./pages/ShowDetails";
 import AnimeDetails from "./pages/AnimeDetails";
 import styled from "styled-components";
+import Footer from "./components/Footer";
 
 function App() {
   // const [showScrollbar, setShowScrollbar] = useState(false);
@@ -56,6 +57,7 @@ function App() {
         <Route path="/anime/:animeid" element={<AnimeDetails />} />
       </Routes>
       {/* </Scrollbar> */}
+      <Footer />
     </Router>
   );
 }
