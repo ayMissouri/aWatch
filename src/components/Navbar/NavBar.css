@@ -1,5 +1,11 @@
 .navbar {
-  background-color: #202020b9;
+  background-image: linear-gradient(
+    90deg,
+    #c70a4629,
+    #a000eb29 48.44%,
+    #00a57d29
+  );
+  backdrop-filter: saturate(180%) blur(20px);
   height: 80px;
   display: flex;
   justify-content: center;
@@ -23,7 +29,7 @@
   align-items: center;
   width: 100%;
   height: 80px;
-  max-width: 1500px;
+  max-width: 1300px;
 }
 
 .nav-logo {
