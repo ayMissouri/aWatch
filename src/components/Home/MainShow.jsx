@@ -91,6 +91,7 @@ const Button = styled.button`
   height: 3em;
   font-weight: bold;
   transition: 1s ease-in-out;
+  margin-bottom: 10rem;
   &:hover {
     background: linear-gradient(to right, #427bf5e0, #c70a46e0);
   }
@@ -131,13 +132,14 @@ const MainShow = ({ movie }) => {
         <Button onClick={handleCardClick}>
           <i className="fa-solid fa-play"></i> Watch Now
         </Button>
-        <Arrow>
+        {/* <Arrow>
           <i className="fa-solid fa-chevron-down fa-bounce"></i>
-        </Arrow>
+        </Arrow> */}
       </Details>
       <Image
         src={`https://image.tmdb.org/t/p/original${movie[randomIndex].backdrop_path}`}
         alt={movie[randomIndex].original_title}
+        loading="eager"
       />
       <GradientOverlay />
     </Hero>

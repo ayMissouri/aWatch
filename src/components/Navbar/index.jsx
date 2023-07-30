@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
+import styled from "styled-components";
+
+const SearchBar = styled.div`
+  width: 30%;
+  height: 80%;
+  background-color: pink;
+  margin: auto;
+`;
 
 function NavBar() {
   const [click, setClick] = useState(false);

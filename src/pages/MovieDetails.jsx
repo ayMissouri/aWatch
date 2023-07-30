@@ -68,7 +68,7 @@ const Details = styled.div`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 45%;
   @media screen and (max-width: 770px) {
     max-width: 95%;
   }
@@ -330,7 +330,7 @@ const MovieDetails = () => {
   const [data, setData] = useState(null);
   const [streamingData, setStreamingData] = useState(null);
 
-  // console.log(data);
+  console.log(data);
   // console.log(streamingData);
 
   useEffect(() => {
@@ -431,6 +431,14 @@ const MovieDetails = () => {
                     : "https://www.youtube.com/embed/dQw4w9WgXcQ"
                 }
               />
+              {/* <IFrame
+                className="response"
+                src={
+                  data.trailer.id
+                    ? `https://www.youtube.com/embed/${data.trailer.id}`
+                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                }
+              /> */}
             </YouTubeWrapper>
           </TrailerDiv>
         </>
