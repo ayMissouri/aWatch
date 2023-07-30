@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Main = styled.div`
+  margin-top: 3rem;
   width: 100%;
   position: relative;
   padding-bottom: 5rem;
@@ -13,7 +14,7 @@ const Container = styled.div`
   padding-right: 3rem;
   padding-top: 1rem;
   position: relative;
-  z-index: 1;
+  z-index: 0;
 `;
 
 const Content = styled.div`
@@ -33,7 +34,7 @@ const Backdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: -1;
 `;
 
 const Welcome = styled.div`
@@ -89,6 +90,7 @@ const LinkList = styled.ul`
   gap: 2rem;
   display: flex;
   list-style: none;
+  text-decoration: underline;
 `;
 
 function Footer() {

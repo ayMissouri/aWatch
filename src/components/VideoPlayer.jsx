@@ -76,7 +76,11 @@ const VideoPlayer = ({ streamingData, poster }) => {
         ></i>
         Play now
       </PlayButton>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+      <Modal
+        className="videoplayer"
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      >
         <i className="fa-solid fa-x" onClick={handleCloseModal}></i>
         <VimePlayer
           video={streamingData ? streamingData.sources : ""}
