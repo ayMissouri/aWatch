@@ -96,14 +96,14 @@
   display: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1210px) {
   .nav-menu {
     display: flex;
     flex-direction: column;
     width: 100%;
     border-top: 1pxsolid #fff;
     position: absolute;
-    top: 50px;
+    top: 80px;
     left: -110%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -132,8 +132,17 @@
     top: 0;
     right: 0;
     transform: translate(-100%, 60%);
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     color: #c70a46;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .nav-icon {
+    font-size: 1rem;
+  }
+  .nav-menu {
+    top: 50px;
   }
 }
