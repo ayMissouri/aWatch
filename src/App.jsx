@@ -10,6 +10,7 @@ import ShowDetails from "./pages/ShowDetails";
 import AnimeDetails from "./pages/AnimeDetails";
 import styled from "styled-components";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
 
 function App() {
   // const [showScrollbar, setShowScrollbar] = useState(false);
@@ -45,6 +46,7 @@ function App() {
     <Router>
       {/* <Scrollbar className={`custom-scrollbar ${showScrollbar ? "show" : ""}`}> */}
       <Navbar />
+      <Search />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
