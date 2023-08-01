@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import "../App.css";
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -17,6 +18,7 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-around;
   z-index: 99;
+  text-shadow: 0 2px 4px rgb(0, 0, 0);
   @media screen and (min-width: 900px) {
     display: none;
   }
@@ -27,22 +29,21 @@ const NavItem = styled.div`
   color: ${(props) => (props.active ? "blue" : "black")};
   font-weight: ${(props) => (props.active ? "bold" : "normal")};
   cursor: pointer;
-  text-shadow: 0 2px 4px rgb(0, 0, 0);
 `;
 
 const Search = () => {
   const navItems = [
-    { id: 1, label: "🏠", active: true },
-    { id: 2, label: "🔍", active: true },
-    { id: 3, label: "❓", active: true },
+    { id: 1, label: "🏠", active: true, link: "/" },
+    { id: 2, label: "🔍", active: true, link: "/search" },
+    { id: 3, label: "❓", active: true, link: "/about" },
   ];
 
   return (
     <NavbarContainer>
       {navItems.map((item) => (
-        <NavItem key={item.id} active={item.active}>
+        <NavLink className="navItem" key={item.id} to={item.link}>
           {item.label}
-        </NavItem>
+        </NavLink>
       ))}
     </NavbarContainer>
   );

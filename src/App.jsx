@@ -11,6 +11,7 @@ import AnimeDetails from "./pages/AnimeDetails";
 import styled from "styled-components";
 import Footer from "./components/Footer";
 import Search from "./components/Search";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   // const [showScrollbar, setShowScrollbar] = useState(false);
@@ -57,6 +58,8 @@ function App() {
         <Route path="/show/:showid" element={<ShowDetails />} />
         <Route path="/anime" element={<AnimeDetails />} />
         <Route path="/anime/:animeid" element={<AnimeDetails />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search/:query" element={<SearchPage />} />
       </Routes>
       {/* </Scrollbar> */}
       <Footer />

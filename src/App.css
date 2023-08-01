@@ -29,3 +29,9 @@
 .videoplayer {
   z-index: 9999;
 }
+
+.navItem {
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
