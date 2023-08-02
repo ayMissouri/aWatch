@@ -127,8 +127,8 @@ const MainShow = ({ movie }) => {
   return (
     <Hero>
       <Details>
-        <Title>{movie[randomIndex].original_title}</Title>
-        <Description>{movie[randomIndex].overview}</Description>
+        <Title>{movie[randomIndex]?.original_title}</Title>
+        <Description>{movie[randomIndex]?.overview}</Description>
         <Button onClick={handleCardClick}>
           <i className="fa-solid fa-play"></i> Watch Now
         </Button>
@@ -137,8 +137,8 @@ const MainShow = ({ movie }) => {
         </Arrow> */}
       </Details>
       <Image
-        src={`https://image.tmdb.org/t/p/original${movie[randomIndex].backdrop_path}`}
-        alt={movie[randomIndex].original_title}
+        src={`https://image.tmdb.org/t/p/original${movie[randomIndex]?.backdrop_path}`}
+        alt={movie[randomIndex]?.original_title}
         loading="eager"
       />
       <GradientOverlay />

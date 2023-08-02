@@ -133,7 +133,7 @@ const Home = () => {
       ) : (
         <Main>
           <Hero>
-            <MainShow movie={movies}></MainShow>
+            <MainShow movie={movies ? movies : ""}></MainShow>
           </Hero>
           <List>
             <MoviesSlider>
@@ -141,7 +141,7 @@ const Home = () => {
                 <MoviesIcon className="fa-solid fa-fire"></MoviesIcon>
                 <MoviesTitle>Movies</MoviesTitle>
               </SliderTitle>
-              <Slider movies={movies}></Slider>
+              <Slider movies={movies ? movies : ""}></Slider>
             </MoviesSlider>
             <ShowsSlider>
               <SliderTitle>

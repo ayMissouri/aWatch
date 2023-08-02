@@ -6,76 +6,62 @@ const Main = styled.div`
 `;
 
 const Container = styled.div`
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  padding-left: 0;
-  padding-right: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 `;
 
 const Box = styled.div`
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding: 1.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(15 19 21 / var(--tw-bg-opacity));
   border-radius: 0.75rem;
-  width: 100%;
-  height: 100%;
 `;
 
 const Requirements = styled.div``;
 
 const RequirementHeading = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const RequirementText = styled.div`
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   margin-bottom: 1rem;
 `;
 
 const Report = styled.div``;
 
 const ReportHeading = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  --tw-space-y-reverse: 0;
-  margin-top: calc(3.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(3.5rem * var(--tw-space-y-reverse));
+  margin-bottom: 1rem;
 `;
 
 const ReportText = styled.div`
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   margin-bottom: 1rem;
 `;
 
 const ReportList = styled.div`
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   list-style-type: disc;
   margin-left: 1rem;
-  margin-bottom: 1.5rem;
-  /* list-style: none; */
-  margin: 0;
-  padding: 0;
   margin-bottom: 1.5rem;
 `;
 
 const ReportListItem = styled.li`
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+  margin-bottom: 0.75rem;
 `;
 
 const Highlight = styled.span`
