@@ -141,7 +141,7 @@ const Home = () => {
                 <MoviesIcon className="fa-solid fa-fire"></MoviesIcon>
                 <MoviesTitle>Movies</MoviesTitle>
               </SliderTitle>
-              <Slider movies={movies ? movies : ""}></Slider>
+              <Slider movies={movies}></Slider>
             </MoviesSlider>
             <ShowsSlider>
               <SliderTitle>
