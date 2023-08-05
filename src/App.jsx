@@ -14,34 +14,6 @@ import Search from "./components/Search";
 import SearchPage from "./pages/SearchPage";
 
 function App() {
-  // const [showScrollbar, setShowScrollbar] = useState(false);
-
-  // useEffect(() => {
-  //   const container = document.querySelector(".custom-scrollbar");
-  //   if (container) {
-  //     setShowScrollbar(container.scrollHeight > container.clientHeight);
-  //   }
-  // }, []);
-
-  // const Scrollbar = styled.div`
-  //   height: 100vh; /* Set the desired height or adjust as needed */
-  //   overflow-y: scroll; /* Enable vertical scrolling */
-  //   scrollbar-width: thin; /* Width of the scrollbar */
-  //   scrollbar-color: #890730 #c70a46; /* Color of the scrollbar track and thumb */
-  //   ::-webkit-scrollbar {
-  //     width: 8px; /* Width of the scrollbar */
-  //   }
-  //   ::-webkit-scrollbar-track {
-  //     background: #212121; /* Color of the scrollbar track */
-  //   }
-  //   ::-webkit-scrollbar-thumb {
-  //     background-color: #fe125d; /* Color of the scrollbar thumb */
-  //     border-radius: 50px;
-  //   }
-  //   .custom-scrollbar.show::-webkit-scrollbar {
-  //     display: none; /* Hide the scrollbar */
-  //   }
-  // `;
 
   return (
     <Router>
