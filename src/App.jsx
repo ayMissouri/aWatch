@@ -45,7 +45,6 @@ function App() {
 
   return (
     <Router>
-      {/* <Scrollbar className={`custom-scrollbar ${showScrollbar ? "show" : ""}`}> */}
       <Navbar />
       <Search />
       <Routes>
@@ -61,7 +60,6 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/search/:query" element={<SearchPage />} />
       </Routes>
-      {/* </Scrollbar> */}
       <Footer />
     </Router>
   );
