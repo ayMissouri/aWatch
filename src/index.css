@@ -10,13 +10,12 @@ body {
   background-color: #0d0d0d;
 }
 
-/*** Works on common browsers ***/
 ::selection {
   background-color: #c70a46;
   color: #427bf5;
 }
 
-/*** Mozilla based browsers ***/
+/*** For Mozilla based browsers ***/
 ::-moz-selection {
   background-color: #c70a46;
   color: #427bf5;
