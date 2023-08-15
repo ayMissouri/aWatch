@@ -104,7 +104,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const url = "https://api.amissouri.uk/meta/anilist/trending";
+    const url = "https://api.consumet.org/meta/anilist/popular";
     const getPopularAnimes = async () => {
       try {
         const data = await axios.get(url);
@@ -116,6 +116,8 @@ const Home = () => {
 
     getPopularAnimes();
   }, []);
+
+  console.log(animes);
 
   return (
     <>

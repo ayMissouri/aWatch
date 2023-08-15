@@ -139,7 +139,7 @@ function NavBar() {
 
           <SearchBar>
             <Search type="text" placeholder="Search..."></Search>
-            <div class="search"></div>
+            <div className="search"></div>
           </SearchBar>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
