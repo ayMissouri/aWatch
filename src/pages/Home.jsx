@@ -104,7 +104,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const url = "https://api.consumet.org/meta/anilist/popular";
+    const url = "https://api.consumet.org/anime/gogoanime/top-airing";
     const getPopularAnimes = async () => {
       try {
         const data = await axios.get(url);
@@ -117,7 +117,7 @@ const Home = () => {
     getPopularAnimes();
   }, []);
 
-  // console.log(animes);
+  console.log(animes);
   // console.log(movies);
 
   return (
