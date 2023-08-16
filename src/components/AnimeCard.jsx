@@ -47,7 +47,7 @@ const AnimeCard = ({ anime }) => {
   return (
     <Card onClick={handleCardClick}>
       <Poster src={`${anime.image}`} alt={anime.id} />
-      <Title>{anime.title.english}</Title>
+      <Title>{anime.title}</Title>
     </Card>
   );
 };

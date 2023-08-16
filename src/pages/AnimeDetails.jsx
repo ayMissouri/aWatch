@@ -301,7 +301,7 @@ const AnimeDetails = () => {
   // console.log(data);
 
   useEffect(() => {
-    const url = `https://api.consumet.org/meta/anilist/info/${id}`;
+    const url = `https://api.consumet.org/anime/gogoanime/info/${id}`;
     const getMovieInfo = async () => {
       try {
         const { data } = await axios.get(url);
@@ -313,6 +313,8 @@ const AnimeDetails = () => {
 
     getMovieInfo();
   }, []);
+
+  // console.log(data);
 
   return (
     <>
@@ -326,14 +328,14 @@ const AnimeDetails = () => {
           <Hero>
             <Details>
               <PosterContainer>
-                <Poster src={data.image} alt={data.title.english} />
+                <Poster src={data.image} alt={data.title} />
                 <PosterGradientOverlay />
                 <MobilePlayButton onClick={() => console.log("play")}>
                   <i className="fa-solid fa-play"></i>
                 </MobilePlayButton>
               </PosterContainer>
               <Info>
-                <Title>{data.title.english}</Title>
+                <Title>{data.title}</Title>
                 <TagLine>
                   {data.tagline ? (
                     <p style={{ color: "#b9b9b9" }}>"{data.tagline}"</p>
