@@ -117,7 +117,8 @@ const Home = () => {
     getPopularAnimes();
   }, []);
 
-  console.log(animes);
+  // console.log(animes);
+  // console.log(movies);
 
   return (
     <>

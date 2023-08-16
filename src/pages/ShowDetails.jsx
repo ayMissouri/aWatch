@@ -297,7 +297,7 @@ const ShowDetails = () => {
   // console.log(data);
 
   useEffect(() => {
-    const url = `https://api.amissouri.uk/meta/tmdb/info/${id}`;
+    const url = `https://api.consumet.org/meta/tmdb/info/${id}`;
     const getMovieInfo = async () => {
       try {
         const { data } = await axios.get(url, { params: { type: "tv" } });
