@@ -5,9 +5,9 @@ import ReactHlsPlayer from "react-hls-player";
 import { useEffect } from "react";
 
 export default function VimePlayer({ video, subtitles, poster }) {
-  const subs = subtitles?.map((item) => {
-    return { lang: item.lang, language: item.lang, file: item.url };
-  });
+  // const subs = subtitles?.map((item) => {
+  //   return { lang: item.lang, language: item.lang, file: item.url };
+  // });
 
   const ref = useRef(null);
 
@@ -38,7 +38,7 @@ export default function VimePlayer({ video, subtitles, poster }) {
           quality: "360p",
         },
       ]}
-      subtitles={subs}
+      // subtitles={subs}
       autoplay
       pictureInPicture
     >

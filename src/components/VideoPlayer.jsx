@@ -84,7 +84,7 @@ const VideoPlayer = ({ streamingData, poster }) => {
         <i className="fa-solid fa-x" onClick={handleCloseModal}></i>
         <VimePlayer
           video={streamingData ? streamingData.sources : ""}
-          subtitles={streamingData ? streamingData.subtitles : ""}
+          // subtitles={streamingData ? streamingData.subtitles : ""}
         />
       </Modal>
     </div>
