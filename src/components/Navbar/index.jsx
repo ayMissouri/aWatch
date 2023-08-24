@@ -137,10 +137,10 @@ function NavBar() {
             <img src="/awatch.png" alt="awatch logo" className="navlogo" />
           </NavLink>
 
-          <SearchBar>
+          {/* <SearchBar>
             <Search type="text" placeholder="Search..."></Search>
             <div className="search"></div>
-          </SearchBar>
+          </SearchBar> */}
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">

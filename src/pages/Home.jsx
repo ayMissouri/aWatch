@@ -28,6 +28,7 @@ const loadingOptions = {
 const SliderTitle = styled.div`
   display: flex;
   align-items: center;
+  cursor: default;
 `;
 
 const MoviesIcon = styled.i`
@@ -117,7 +118,7 @@ const Home = () => {
     getPopularAnimes();
   }, []);
 
-  console.log(animes);
+  // console.log(animes);
   // console.log(movies);
 
   return (
