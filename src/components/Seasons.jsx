@@ -4,20 +4,23 @@ import styled from "styled-components";
 const Main = styled.div`
   /* background-color: pink; */
   margin-top: 5px;
-  position: relative;
+  margin-bottom: 50px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 const Select = styled.select`
   width: 100%;
-  max-width: 500px;
-  height: 2rem;
+  max-width: 120px;
+  height: 4rem;
   font-size: larger;
   border: none;
+  border-radius: 10px;
   color: white;
-  background-color: black;
+  font-weight: bold;
+  text-align: center;
+  background-color: #262626;
 `;
 
 export default function App({ seasons }) {
