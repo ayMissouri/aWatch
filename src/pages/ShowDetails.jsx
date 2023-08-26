@@ -5,6 +5,7 @@ import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
 import { useParams } from "react-router-dom";
 import VideoPlayer from "../components/VideoPlayer";
+import Seasons from "../components/Seasons";
 
 const Hero = styled.div`
   position: relative;
@@ -294,7 +295,7 @@ const ShowDetails = () => {
 
   const [data, setData] = useState(null);
 
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     const url = `https://api.consumet.org/meta/tmdb/info/${id}`;
@@ -351,13 +352,13 @@ const ShowDetails = () => {
                 </Rating>
                 <Buttons>
                   <VideoPlayer />
-                  <BookmarkButton>
+                  {/* <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"
                       style={{ marginRight: "5px" }}
                     ></i>
                     Bookmark
-                  </BookmarkButton>
+                  </BookmarkButton> */}
                 </Buttons>
               </Info>
             </Details>
@@ -367,6 +368,7 @@ const ShowDetails = () => {
               <TrailerTitle>Trailer</TrailerTitle>
             </TrailerDiv> */}
           </Hero>
+          <Seasons seasons={data.seasons}></Seasons>
           <TrailerDiv>
             <TrailerTitle>Related Videos</TrailerTitle>
             <YouTubeWrapper>
