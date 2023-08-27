@@ -334,7 +334,7 @@ const MovieDetails = () => {
   // console.log(streamingData);
 
   useEffect(() => {
-    const url = `https://api.consumet.org/meta/tmdb/info/${id}`;
+    const url = `https://api.awatch.fun/meta/tmdb/info/${id}`;
     const getMovieInfo = async () => {
       try {
         const { data } = await axios.get(url, { params: { type: "movie" } });
@@ -349,7 +349,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (data != null) {
-      const url = `https://api.consumet.org/meta/tmdb/watch/${data.episodeId}`;
+      const url = `https://api.awatch.fun/meta/tmdb/watch/${data.episodeId}`;
       const getStreamingData = async () => {
         try {
           const { data: streamingData } = await axios.get(url, {

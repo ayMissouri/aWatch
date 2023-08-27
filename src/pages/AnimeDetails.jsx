@@ -301,7 +301,7 @@ const AnimeDetails = () => {
   // console.log(data);
 
   useEffect(() => {
-    const url = `https://api.consumet.org/anime/gogoanime/info/${id}`;
+    const url = `https://api.awatch.fun/anime/gogoanime/info/${id}`;
     const getMovieInfo = async () => {
       try {
         const { data } = await axios.get(url);
