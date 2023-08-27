@@ -7,10 +7,11 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const Select = styled.select`
-  width: 100%;
+  width: 5rem;
   max-width: 120px;
   height: 3rem;
   font-size: larger;
@@ -37,28 +38,102 @@ const Option = styled.option`
   background-color: darken($select-background, 5);
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
 const Title = styled.p`
   margin-right: 15px;
   font-size: 1.25rem;
 `;
 
+const EpisodeList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const EpisodeSquare = styled.div`
+  width: 12vh;
+  height: 7vh;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 7px;
+  background-color: #c70a467d;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  backdrop-filter: blur(100px);
+`;
+
+const EpisodeTitle = styled.span`
+  color: white;
+  z-index: 2;
+  font-size: 1.5vh;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 1px 1px #000000;
+`;
+
+const BlurredOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.234);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+`;
+
 export default function App({ seasons }) {
-  const [selectedOption, setSelectedOption] = useState();
+  const [selectedOption, setSelectedOption] = useState(seasons[0]?.season);
   console.log(seasons);
+  console.log(selectedOption);
 
   return (
     <Main>
-      <Title>Season:</Title>
-      <Select
-        value={selectedOption}
-        onChange={(e) => setSelectedOption(e.target.value)}
-      >
-        {seasons.map((item) => (
-          <Option key={item.season} value={item.season}>
-            {item.season}
-          </Option>
-        ))}
-      </Select>
+      <TitleContainer>
+        <Title>Season:</Title>
+        <Select
+          value={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        >
+          {seasons.map((item) => (
+            <Option key={item.season} value={item.season}>
+              {item.season}
+            </Option>
+          ))}
+        </Select>
+      </TitleContainer>
+
+      {selectedOption && (
+        <EpisodeList>
+          {seasons[selectedOption - 1]?.episodes.map((episode, index) => (
+            <EpisodeSquare
+              key={index}
+              style={{
+                backgroundImage: `url(${
+                  episode && episode.img && episode.img.mobile
+                    ? episode.img.mobile
+                    : ""
+                })`,
+              }}
+            >
+              <BlurredOverlay />
+              <EpisodeTitle>{episode.title}</EpisodeTitle>
+            </EpisodeSquare>
+          ))}
+        </EpisodeList>
+      )}
     </Main>
   );
 }
