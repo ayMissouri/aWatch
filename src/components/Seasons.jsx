@@ -71,29 +71,18 @@ const EpisodeSquare = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  backdrop-filter: blur(100px);
+  /* backdrop-filter: blur(100px); */
 `;
 
 const EpisodeTitle = styled.span`
-  color: white;
+  color: #ffffff;
   z-index: 2;
   font-size: 1.5vh;
-  font-weight: 600;
+  font-weight: 450;
   text-align: center;
-  text-shadow: 1px 1px #000000;
+  text-shadow: 1px 1px 3px #000000;
   text-overflow: ellipsis;
   padding: 5px;
-`;
-
-const BlurredOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.234);
-  backdrop-filter: blur(1px);
-  z-index: 1;
 `;
 
 export default function App({ seasons }) {
@@ -137,7 +126,6 @@ export default function App({ seasons }) {
                   })`,
                 }}
               >
-                <BlurredOverlay />
                 <EpisodeTitle>{truncatedTitle}</EpisodeTitle>
               </EpisodeSquare>
             );
