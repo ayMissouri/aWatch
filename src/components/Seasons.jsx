@@ -81,6 +81,8 @@ const EpisodeTitle = styled.span`
   font-weight: 600;
   text-align: center;
   text-shadow: 1px 1px #000000;
+  text-overflow: ellipsis;
+  padding: 5px;
 `;
 
 const BlurredOverlay = styled.div`
@@ -96,8 +98,9 @@ const BlurredOverlay = styled.div`
 
 export default function App({ seasons }) {
   const [selectedOption, setSelectedOption] = useState(seasons[0]?.season);
-  console.log(seasons);
-  console.log(selectedOption);
+
+  // console.log(seasons);
+  // console.log(selectedOption);
 
   return (
     <Main>
@@ -117,21 +120,28 @@ export default function App({ seasons }) {
 
       {selectedOption && (
         <EpisodeList>
-          {seasons[selectedOption - 1]?.episodes.map((episode, index) => (
-            <EpisodeSquare
-              key={index}
-              style={{
-                backgroundImage: `url(${
-                  episode && episode.img && episode.img.mobile
-                    ? episode.img.mobile
-                    : ""
-                })`,
-              }}
-            >
-              <BlurredOverlay />
-              <EpisodeTitle>{episode.title}</EpisodeTitle>
-            </EpisodeSquare>
-          ))}
+          {seasons[selectedOption - 1]?.episodes.map((episode, index) => {
+            const truncatedTitle =
+              episode.title.length > 40
+                ? episode.title.substring(0, 40) + "..."
+                : episode.title;
+
+            return (
+              <EpisodeSquare
+                key={index}
+                style={{
+                  backgroundImage: `url(${
+                    episode && episode.img && episode.img.mobile
+                      ? episode.img.mobile
+                      : ""
+                  })`,
+                }}
+              >
+                <BlurredOverlay />
+                <EpisodeTitle>{truncatedTitle}</EpisodeTitle>
+              </EpisodeSquare>
+            );
+          })}
         </EpisodeList>
       )}
     </Main>
