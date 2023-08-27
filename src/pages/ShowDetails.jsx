@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
+import * as ErrorLot from "../../public/404.json";
 import { useParams } from "react-router-dom";
 import VideoPlayer from "../components/VideoPlayer";
 import Seasons from "../components/Seasons";
@@ -278,7 +279,11 @@ const LoadingDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 80vh; /* Adjust this height as needed */
+
+  @media screen and (max-width: 770px) {
+    height: 60vh; /* Adjust the height for smaller screens */
+  }
 `;
 
 const loadingOptions = {
@@ -290,11 +295,22 @@ const loadingOptions = {
   },
 };
 
+const errorOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: ErrorLot.default,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
+
 const ShowDetails = () => {
   const params = useParams();
   const id = params.showid;
 
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   console.log(data);
 
@@ -304,8 +320,10 @@ const ShowDetails = () => {
       try {
         const { data } = await axios.get(url, { params: { type: "tv" } });
         setData(data);
+        setIsLoading(false);
       } catch (err) {
-        throw new Error(err.message);
+        setError(err.message);
+        setIsLoading(false);
       }
     };
 
@@ -314,10 +332,15 @@ const ShowDetails = () => {
 
   return (
     <>
-      {!data ? (
+      {isLoading ? (
         <LoadingDiv>
           <Lottie options={loadingOptions} height={250} width={250} />
           <h1>Loading...</h1>
+        </LoadingDiv>
+      ) : error ? (
+        <LoadingDiv>
+          <Lottie options={errorOptions} height="auto" width="30%" />
+          <h1>Sorry, we couldn't find your show.</h1>
         </LoadingDiv>
       ) : (
         <>
