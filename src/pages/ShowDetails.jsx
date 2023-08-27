@@ -157,7 +157,8 @@ const Genres = styled.ul`
 const GenreLi = styled.li`
   background: #c70a4619;
   color: #ff0051;
-  font-weight: 450;
+  font-weight: 500;
+  text-shadow: 1px 1px #000000;
   border-radius: 25px;
   margin-left: 0.5rem;
   padding: 0.2rem 0.7rem 0.2rem 0.7rem;
