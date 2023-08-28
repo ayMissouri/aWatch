@@ -90,11 +90,18 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const url =
-      "https://api.themoviedb.org/3/discover/tv?api_key=db319c6e116fed7f38628e30ff441b3e&with_genres=&with_networks=&with_keywords=&language=en-US&page=1&include_adult=false&sort_by=popularity.desc&watch_region=US&with_watch_monetization_types=flatrate|free|ads|rent|buy";
+    const options = {
+      method: "GET",
+      url: "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDVhZDk0OTA3MjE1ZTExN2ZiM2E2ODUxZTA5ZTExYyIsInN1YiI6IjYxYzU4MTk5ZTcyZmU4MDA4NTcyZmIxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.95IxkLrZnLinOPUjX0ppd1XSzVDwDIvKA0QYlUHfjF0",
+      },
+    };
     const getPopularShows = async () => {
       try {
-        const data = await axios.get(url);
+        const data = await axios.request(options);
         setShows(data.data.results);
       } catch (err) {
         throw new Error(err.message);
@@ -120,6 +127,7 @@ const Home = () => {
 
   // console.log(animes);
   // console.log(movies);
+  // console.log(shows);
 
   return (
     <>

@@ -388,9 +388,6 @@ const ShowDetails = () => {
             </Details>
             <Image src={data.cover} alt={data.title} />
             <GradientOverlay />
-            {/* <TrailerDiv>
-              <TrailerTitle>Trailer</TrailerTitle>
-            </TrailerDiv> */}
           </Hero>
           <Seasons seasons={data.seasons}></Seasons>
           <TrailerDiv>

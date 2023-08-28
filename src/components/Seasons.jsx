@@ -78,9 +78,9 @@ const EpisodeTitle = styled.span`
   color: #ffffff;
   z-index: 2;
   font-size: 1.5vh;
-  font-weight: 450;
+  font-weight: 500;
   text-align: center;
-  text-shadow: 1px 1px 3px #000000;
+  text-shadow: 2px 2px 2px #000000;
   text-overflow: ellipsis;
   padding: 5px;
 `;
@@ -111,8 +111,8 @@ export default function App({ seasons }) {
         <EpisodeList>
           {seasons[selectedOption - 1]?.episodes.map((episode, index) => {
             const truncatedTitle =
-              episode.title.length > 40
-                ? episode.title.substring(0, 40) + "..."
+              episode.title.length > 25
+                ? episode.title.substring(0, 25) + "..."
                 : episode.title;
 
             return (
