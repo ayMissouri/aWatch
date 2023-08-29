@@ -12,7 +12,7 @@ const Card = styled.div`
   border-radius: 8px;
   padding: 16px;
   transition: 0.2s ease-in-out;
-  cursor: crosshair;
+  cursor: grab;
   &:hover {
     filter: drop-shadow(0px 0px 10px #9b12a5);
   }
