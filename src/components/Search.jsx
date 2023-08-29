@@ -34,7 +34,7 @@ const NavItem = styled.div`
 const Search = () => {
   const navItems = [
     { id: 1, label: "🏠", active: true, link: "/" },
-    { id: 2, label: "🔍", active: true, link: "/search" },
+    { id: 2, label: "🔍", active: true, link: "/discover" },
     { id: 3, label: "❓", active: true, link: "/about" },
   ];
 
