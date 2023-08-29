@@ -37,8 +37,36 @@ const Button = styled.button`
   }
 `;
 
-function SearchBar({ onSearch }) {
+const Select = styled.select`
+  width: 5rem;
+  max-width: 120px;
+  margin-right: 10px;
+  border: solid 1px #c70a46;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  background-color: #131313;
+  &:hover {
+    background-color: #131313;
+  }
+`;
+
+const Option = styled.option`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: darken($select-background, 5);
+`;
+
+function SearchBar({ onSearch, onSearch2 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [type, setType] = useState("movie");
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -48,10 +76,19 @@ function SearchBar({ onSearch }) {
 
   const handleSearch = () => {
     onSearch(searchQuery);
+    onSearch2(type);
   };
 
   return (
     <Main>
+      <Select value={type} onChange={(e) => setType(e.target.value)}>
+        <Option key={"movie"} value={"movie"}>
+          Movies
+        </Option>
+        <Option key={"tv"} value={"tv"}>
+          Tv Shows
+        </Option>
+      </Select>
       <Input
         type="text"
         value={searchQuery}

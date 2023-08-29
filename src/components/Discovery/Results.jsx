@@ -16,11 +16,15 @@ const Main = styled.div`
 
 const Card = styled.div`
   width: 14vw;
-  background-color: #26262680;
+  background-color: none;
   border-radius: 12px;
   padding: 0.5rem;
   margin-bottom: 1rem;
   cursor: pointer;
+  border: 0.5px solid transparent;
+  &:hover {
+    border: 0.5px solid #c70a46;
+  }
   @media screen and (max-width: 784px) {
     width: 9rem;
   }
@@ -32,6 +36,7 @@ const Card = styled.div`
 const Poster = styled.img`
   max-width: 100%;
   height: auto;
+  border-radius: 12px;
 `;
 
 const Title = styled.p`
@@ -43,26 +48,47 @@ const ReleaseDate = styled.p`
   color: gray;
 `;
 
-function Results({ results }) {
-  // console.log(results);
+function Results({ results, type }) {
+  console.log(results);
   const navigate = useNavigate();
 
-  const handleCardClick = (result) => {
-    navigate(`/movie/${result}`);
+  const handleCardClick = (result, type) => {
+    if (type === "tv") {
+      type = "show";
+    } else {
+      type = "movie";
+    }
+    navigate(`/${type}/${result}`);
   };
 
   return (
     <Main>
-      {results.map((result) => (
-        <Card key={result.id} onClick={() => handleCardClick(result.id)}>
-          <Poster
-            src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
-            alt={`${result.title} Poster`}
-          />
-          <Title>{result.title}</Title>
-          <ReleaseDate>{result.release_date}</ReleaseDate>
-        </Card>
-      ))}
+      {results.map((result) => {
+        if (result.poster_path !== null) {
+          return (
+            <Card
+              key={result.id}
+              onClick={() => handleCardClick(result.id, type)}
+            >
+              <Poster
+                src={
+                  result.poster_path
+                    ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                    : "https://cdn.publicsectornetwork.com/insight/feature_images/placeholder_595bd4.jpg"
+                }
+                alt={`${result.title} Poster`}
+              />
+              <Title>{result.title ? result.title : result.name}</Title>
+              <ReleaseDate>
+                {result.release_date
+                  ? result.release_date
+                  : result.first_air_date}
+              </ReleaseDate>
+            </Card>
+          );
+        }
+        return null;
+      })}
     </Main>
   );
 }
