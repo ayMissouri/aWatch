@@ -312,7 +312,7 @@ const ShowDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     const url = `https://api.awatch.fun/meta/tmdb/info/${id}`;

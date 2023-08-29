@@ -49,7 +49,7 @@ const ReleaseDate = styled.p`
 `;
 
 function Results({ results, type }) {
-  console.log(results);
+  // console.log(results);
   const navigate = useNavigate();
 
   const handleCardClick = (result, type) => {

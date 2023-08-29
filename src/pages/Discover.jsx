@@ -10,6 +10,7 @@ function Discover() {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [type, setType] = useState("movie");
+  const [one, setOne] = useState(1);
 
   useEffect(() => {
     api.fetchGenres().then(setGenres);
@@ -17,11 +18,16 @@ function Discover() {
 
   useEffect(() => {
     api.searchMovies(searchQuery, selectedGenres, type).then(setMovies);
-  }, [searchQuery, selectedGenres]);
+  }, [searchQuery, selectedGenres, one]);
 
   return (
     <div>
-      <SearchBar onSearch={setSearchQuery} onSearch2={setType} />
+      <SearchBar
+        onSearch={setSearchQuery}
+        onSearch2={setType}
+        clearResults={setMovies}
+        one={setOne}
+      />
       {/* <GenreFilter
         genres={genres}
         selectedGenres={selectedGenres}

@@ -64,7 +64,7 @@ const Option = styled.option`
   background-color: darken($select-background, 5);
 `;
 
-function SearchBar({ onSearch, onSearch2 }) {
+function SearchBar({ onSearch, onSearch2, clearResults, one }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [type, setType] = useState("movie");
 
@@ -77,11 +77,18 @@ function SearchBar({ onSearch, onSearch2 }) {
   const handleSearch = () => {
     onSearch(searchQuery);
     onSearch2(type);
+    one(type);
   };
 
   return (
     <Main>
-      <Select value={type} onChange={(e) => setType(e.target.value)}>
+      <Select
+        value={type}
+        onChange={(e) => {
+          setType(e.target.value);
+          clearResults([]);
+        }}
+      >
         <Option key={"movie"} value={"movie"}>
           Movies
         </Option>
