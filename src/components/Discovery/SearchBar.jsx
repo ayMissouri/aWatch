@@ -5,7 +5,10 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: solid 1px #c70a46;
 `;
 
 const Input = styled.input`

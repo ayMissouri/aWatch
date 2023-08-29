@@ -12,12 +12,14 @@ const api = {
     });
     return response.data.genres;
   },
-  searchMovies: async (query, genre) => {
+  searchMovies: async (query, genres) => {
+    const genresString = genres.join(",");
+
     const response = await axios.get(`${BASE_URL}/search/movie`, {
       params: {
         api_key: API_KEY,
         query,
-        with_genres: genre,
+        with_genres: genresString,
       },
     });
     return response.data.results;

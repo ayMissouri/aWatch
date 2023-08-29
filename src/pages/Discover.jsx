@@ -6,23 +6,28 @@ import api from "../components/Discovery/api";
 
 function Discover() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     api.fetchGenres().then(setGenres);
-    api.searchMovies(searchQuery, selectedGenre).then(setMovies);
-  }, [searchQuery, selectedGenre]);
+  }, []);
+
+  useEffect(() => {
+    api.searchMovies(searchQuery, selectedGenres).then(setMovies);
+  }, [searchQuery, selectedGenres]);
 
   return (
     <div>
       <SearchBar onSearch={setSearchQuery} />
-      <GenreFilter
+      {/* <GenreFilter
         genres={genres}
-        selectedGenre={selectedGenre}
-        onSelectGenre={setSelectedGenre}
-      />
+        selectedGenres={selectedGenres}
+        onSelectGenre={setSelectedGenres}
+        searchQuery={searchQuery}
+        setMovies={setMovies}
+      /> */}
       <Results results={movies} />
     </div>
   );
