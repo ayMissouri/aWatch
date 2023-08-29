@@ -328,10 +328,10 @@ const MovieDetails = () => {
   const id = params.movieid;
 
   const [data, setData] = useState(null);
+  const [availableServers, setAvailableServers] = useState(null);
   const [streamingData, setStreamingData] = useState(null);
 
-  console.log(data);
-  // console.log(streamingData);
+  // console.log(data);
 
   useEffect(() => {
     const url = `https://api.awatch.fun/meta/tmdb/info/${id}`;
@@ -349,13 +349,40 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (data != null) {
-      const url = `https://api.awatch.fun/meta/tmdb/watch/${data.episodeId}`;
+      const url = "https://api.awatch.fun/movies/flixhq/servers";
+      const getAvailableServers = async () => {
+        try {
+          const serverData = await axios.get(url, {
+            params: {
+              episodeId: data.episodeId,
+              mediaId: data.id,
+            },
+          });
+          setAvailableServers(serverData.data);
+        } catch (err) {
+          throw new Error(err.message);
+        }
+      };
+
+      getAvailableServers();
+    }
+  }, [data]);
+
+  // console.log("available servers: ", availableServers);
+
+  useEffect(() => {
+    if (availableServers != null) {
+      const url = "https://api.awatch.fun/movies/flixhq/watch";
       const getStreamingData = async () => {
         try {
-          const { data: streamingData } = await axios.get(url, {
-            params: { id: data.id },
+          const streamingData = await axios.get(url, {
+            params: {
+              episodeId: data.episodeId,
+              mediaId: data.id,
+              server: availableServers[0].name,
+            },
           });
-          setStreamingData(streamingData);
+          setStreamingData(streamingData.data);
         } catch (err) {
           throw new Error(err.message);
         }
@@ -363,7 +390,9 @@ const MovieDetails = () => {
 
       getStreamingData();
     }
-  }, [data]);
+  }, [availableServers]);
+
+  // console.log("streaming data: ", streamingData);
 
   return (
     <>
@@ -405,7 +434,6 @@ const MovieDetails = () => {
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  {/* PLAY BUTTON */}
                   <VideoPlayer streamingData={streamingData} />
                   <BookmarkButton>
                     <i
@@ -431,14 +459,6 @@ const MovieDetails = () => {
                     : "https://www.youtube.com/embed/dQw4w9WgXcQ"
                 }
               />
-              {/* <IFrame
-                className="response"
-                src={
-                  data.trailer.id
-                    ? `https://www.youtube.com/embed/${data.trailer.id}`
-                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
-                }
-              /> */}
             </YouTubeWrapper>
           </TrailerDiv>
         </>

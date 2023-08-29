@@ -52,8 +52,7 @@ const MobilePlayButton = styled.button`
   }
 `;
 
-const VideoPlayer = ({ streamingData, poster }) => {
-  // console.log(streamingData);
+const VideoPlayer = ({ streamingData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {

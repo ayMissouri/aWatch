@@ -4,7 +4,7 @@ import "react-tuby/css/main.css";
 import ReactHlsPlayer from "react-hls-player";
 import { useEffect } from "react";
 
-export default function VimePlayer({ video, subtitles, poster }) {
+export default function VimePlayer({ video, subtitles }) {
   // const subs = subtitles?.map((item) => {
   //   return { lang: item.lang, language: item.lang, file: item.url };
   // });
@@ -39,8 +39,9 @@ export default function VimePlayer({ video, subtitles, poster }) {
         },
       ]}
       // subtitles={subs}
-      autoplay
-      pictureInPicture
+      autoplay={true}
+      pictureInPicture={true}
+      enableWorker={true}
     >
       {(ref, props) => <ReactHlsPlayer playerRef={ref} {...props} />}
     </Player>
