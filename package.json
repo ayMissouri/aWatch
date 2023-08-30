@@ -30,6 +30,7 @@
     "swiper": "^9.3.2"
   },
   "devDependencies": {
+    "@locator/runtime": "^0.3.1",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",

@@ -24,13 +24,6 @@ const NavbarContainer = styled.div`
   }
 `;
 
-const NavItem = styled.div`
-  padding: 10px;
-  color: ${(props) => (props.active ? "blue" : "black")};
-  font-weight: ${(props) => (props.active ? "bold" : "normal")};
-  cursor: pointer;
-`;
-
 const Search = () => {
   const navItems = [
     { id: 1, label: "🏠", active: true, link: "/" },
@@ -40,11 +33,15 @@ const Search = () => {
 
   return (
     <NavbarContainer>
-      {navItems.map((item) => (
-        <NavLink className="navItem" key={item.id} to={item.link}>
-          {item.label}
-        </NavLink>
-      ))}
+      <NavLink className="navItem" key={navItems[0].id} to={navItems[0].link}>
+        {navItems[0].label}
+      </NavLink>
+      <a href="https://search.awatch.fun" className="navItem">
+        🔍
+      </a>
+      <NavLink className="navItem" key={navItems[2].id} to={navItems[2].link}>
+        {navItems[2].label}
+      </NavLink>
     </NavbarContainer>
   );
 };
