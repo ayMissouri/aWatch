@@ -347,50 +347,50 @@ const MovieDetails = () => {
     getMovieInfo();
   }, []);
 
-  useEffect(() => {
-    if (data != null) {
-      const url = "https://api.awatch.fun/movies/flixhq/servers";
-      const getAvailableServers = async () => {
-        try {
-          const serverData = await axios.get(url, {
-            params: {
-              episodeId: data.episodeId,
-              mediaId: data.id,
-            },
-          });
-          setAvailableServers(serverData.data);
-        } catch (err) {
-          throw new Error(err.message);
-        }
-      };
+  // useEffect(() => {
+  //   if (data != null) {
+  //     const url = "https://api.awatch.fun/movies/flixhq/servers";
+  //     const getAvailableServers = async () => {
+  //       try {
+  //         const serverData = await axios.get(url, {
+  //           params: {
+  //             episodeId: data.episodeId,
+  //             mediaId: data.id,
+  //           },
+  //         });
+  //         setAvailableServers(serverData.data);
+  //       } catch (err) {
+  //         throw new Error(err.message);
+  //       }
+  //     };
 
-      getAvailableServers();
-    }
-  }, [data]);
+  //     getAvailableServers();
+  //   }
+  // }, [data]);
 
   // console.log("available servers: ", availableServers);
 
-  useEffect(() => {
-    if (availableServers != null) {
-      const url = "https://api.awatch.fun/movies/flixhq/watch";
-      const getStreamingData = async () => {
-        try {
-          const streamingData = await axios.get(url, {
-            params: {
-              episodeId: data.episodeId,
-              mediaId: data.id,
-              server: availableServers[0].name,
-            },
-          });
-          setStreamingData(streamingData.data);
-        } catch (err) {
-          throw new Error(err.message);
-        }
-      };
+  // useEffect(() => {
+  //   if (availableServers != null) {
+  //     const url = "https://api.awatch.fun/movies/flixhq/watch";
+  //     const getStreamingData = async () => {
+  //       try {
+  //         const streamingData = await axios.get(url, {
+  //           params: {
+  //             episodeId: data.episodeId,
+  //             mediaId: data.id,
+  //             server: availableServers[0].name,
+  //           },
+  //         });
+  //         setStreamingData(streamingData.data);
+  //       } catch (err) {
+  //         throw new Error(err.message);
+  //       }
+  //     };
 
-      getStreamingData();
-    }
-  }, [availableServers]);
+  //     getStreamingData();
+  //   }
+  // }, [availableServers]);
 
   // console.log("streaming data: ", streamingData);
 
@@ -434,7 +434,7 @@ const MovieDetails = () => {
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  <VideoPlayer streamingData={streamingData} />
+                  <VideoPlayer streamingData={id} type={"movie"} />
                   <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"

@@ -120,9 +120,7 @@ function Footer() {
           </Welcome>
           <Links>
             <LinkList>
-              <li>
-                <a href="/about">DMCA</a>
-              </li>
+              <li>{/* <a href="/about">DMCA</a> */}</li>
             </LinkList>
           </Links>
           <p>© aWatch</p>

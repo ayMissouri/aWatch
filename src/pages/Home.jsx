@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  AnimeSlider,
   Hero,
   List,
   Main,
@@ -12,7 +11,6 @@ import styled from "styled-components";
 import axios from "axios";
 import Slider from "../components/Slider/Slider";
 import SliderTv from "../components/Slider/SliderTV";
-import SliderAnime from "../components/Slider/SliderAnime";
 import Lottie from "react-lottie";
 import * as loading from "../../public/loading1.json";
 
@@ -55,12 +53,6 @@ const ShowsTitle = styled.h2`
   -webkit-text-fill-color: transparent;
 `;
 
-const AnimeTitle = styled.h2`
-  background-image: linear-gradient(45deg, #ff00f7, #ff003c, #f700ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
-
 const LoadingDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,7 +64,6 @@ const LoadingDiv = styled.div`
 const Home = () => {
   const [movies, setMovies] = useState(null);
   const [shows, setShows] = useState(null);
-  const [animes, setAnimes] = useState(null);
 
   useEffect(() => {
     const url =
@@ -111,27 +102,12 @@ const Home = () => {
     getPopularShows();
   }, []);
 
-  useEffect(() => {
-    const url = "https://api.awatch.fun/anime/gogoanime/top-airing";
-    const getPopularAnimes = async () => {
-      try {
-        const data = await axios.get(url);
-        setAnimes(data.data.results);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    };
-
-    getPopularAnimes();
-  }, []);
-
-  // console.log(animes);
   // console.log(movies);
   // console.log(shows);
 
   return (
     <>
-      {!movies && !shows && !animes ? (
+      {!movies && !shows ? (
         <LoadingDiv>
           <Lottie options={loadingOptions} height={250} width={250} />
           <h1>Loading...</h1>
@@ -156,13 +132,6 @@ const Home = () => {
               </SliderTitle>
               <SliderTv shows={shows}></SliderTv>
             </ShowsSlider>
-            <AnimeSlider>
-              <SliderTitle>
-                <h2>👹</h2>
-                <AnimeTitle> Anime</AnimeTitle>
-              </SliderTitle>
-              <SliderAnime animes={animes}></SliderAnime>
-            </AnimeSlider>
           </List>
         </Main>
       )}

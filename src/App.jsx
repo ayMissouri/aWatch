@@ -7,14 +7,12 @@ import About from "./pages/About";
 import Discover from "./pages/Discover";
 import MovieDetails from "./pages/MovieDetails";
 import ShowDetails from "./pages/ShowDetails";
-import AnimeDetails from "./pages/AnimeDetails";
 import styled from "styled-components";
 import Footer from "./components/Footer";
 import Search from "./components/Search";
 import SearchPage from "./pages/SearchPage";
 
 function App() {
-
   return (
     <Router>
       <Navbar />
@@ -27,8 +25,6 @@ function App() {
         <Route path="/movie/:movieid" element={<MovieDetails />} />
         <Route path="/show" element={<ShowDetails />} />
         <Route path="/show/:showid" element={<ShowDetails />} />
-        <Route path="/anime" element={<AnimeDetails />} />
-        <Route path="/anime/:animeid" element={<AnimeDetails />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/search/:query" element={<SearchPage />} />
       </Routes>

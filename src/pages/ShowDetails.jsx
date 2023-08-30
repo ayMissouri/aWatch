@@ -375,7 +375,7 @@ const ShowDetails = () => {
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  <VideoPlayer />
+                  <VideoPlayer streamingData={id} type={"show"} />
                   {/* <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"
@@ -389,7 +389,7 @@ const ShowDetails = () => {
             <Image src={data.cover} alt={data.title} />
             <GradientOverlay />
           </Hero>
-          <Seasons seasons={data.seasons}></Seasons>
+          {/* <Seasons seasons={data.seasons}></Seasons> */}
           <TrailerDiv>
             <TrailerTitle>Related Videos</TrailerTitle>
             <YouTubeWrapper>

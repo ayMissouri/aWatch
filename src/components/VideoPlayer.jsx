@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import styled from "styled-components";
 import "../App.css";
 import VimePlayer from "./VimePlayer";
+import { useNavigate } from "react-router-dom";
 
 const PlayButton = styled.button`
   width: 186px;
@@ -52,15 +53,13 @@ const MobilePlayButton = styled.button`
   }
 `;
 
-const VideoPlayer = ({ streamingData }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+const VideoPlayer = ({ streamingData, type }) => {
   const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+    if (type === "movie") {
+      window.location.href = `http://127.0.0.1:5174/#/media/tmdb-movie-${streamingData}`;
+    } else if (type === "show") {
+      window.location.href = `http://127.0.0.1:5174/#/media/tmdb-show-${streamingData}`;
+    }
   };
 
   return (
@@ -75,14 +74,6 @@ const VideoPlayer = ({ streamingData }) => {
         ></i>
         Play now
       </PlayButton>
-      <Modal
-        className="videoplayer"
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      >
-        <i className="fa-solid fa-x" onClick={handleCloseModal}></i>
-        <VimePlayer video={streamingData ? streamingData.sources : ""} />
-      </Modal>
     </div>
   );
 };
