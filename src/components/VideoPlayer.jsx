@@ -56,9 +56,9 @@ const MobilePlayButton = styled.button`
 const VideoPlayer = ({ streamingData, type }) => {
   const handleOpenModal = () => {
     if (type === "movie") {
-      window.location.href = `http://127.0.0.1:5174/#/media/tmdb-movie-${streamingData}`;
+      window.location.href = `https://search.awatch.fun/#/media/tmdb-movie-${streamingData}`;
     } else if (type === "show") {
-      window.location.href = `http://127.0.0.1:5174/#/media/tmdb-show-${streamingData}`;
+      window.location.href = `https://search.awatch.fun/#/media/tmdb-show-${streamingData}`;
     }
   };
 

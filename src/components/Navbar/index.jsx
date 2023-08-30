@@ -34,10 +34,7 @@ function NavBar() {
               >
                 Discover
               </NavLink> */}
-              <a
-                href="http://127.0.0.1:5174/#/search/movie"
-                className="nav-links"
-              >
+              <a href="https://search.awatch.fun" className="nav-links">
                 Discover
               </a>
             </li>
