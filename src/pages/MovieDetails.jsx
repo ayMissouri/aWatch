@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import Lottie from "react-lottie";
-import * as loading from "../../public/loading1.json";
-import { useParams } from "react-router-dom";
-import VideoPlayer from "../components/VideoPlayer";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import Lottie from 'react-lottie';
+import * as loading from '../../public/loading1.json';
+import { useParams } from 'react-router-dom';
+import VideoPlayer from '../components/VideoPlayer';
 
 const Hero = styled.div`
   position: relative;
@@ -319,7 +319,7 @@ const loadingOptions = {
   autoplay: true,
   animationData: loading.default,
   rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice",
+    preserveAspectRatio: 'xMidYMid slice',
   },
 };
 
@@ -337,7 +337,7 @@ const MovieDetails = () => {
     const url = `https://api.awatch.fun/meta/tmdb/info/${id}`;
     const getMovieInfo = async () => {
       try {
-        const { data } = await axios.get(url, { params: { type: "movie" } });
+        const { data } = await axios.get(url, { params: { type: 'movie' } });
         setData(data);
       } catch (err) {
         throw new Error(err.message);
@@ -413,9 +413,9 @@ const MovieDetails = () => {
                 <Title>{data.title}</Title>
                 <TagLine>
                   {data.tagline ? (
-                    <p style={{ color: "#b9b9b9" }}>"{data.tagline}"</p>
+                    <p style={{ color: '#b9b9b9' }}>"{data.tagline}"</p>
                   ) : (
-                    ""
+                    ''
                   )}
                 </TagLine>
                 <Genres>
@@ -427,21 +427,21 @@ const MovieDetails = () => {
                 <Rating>
                   <i
                     className="fa-solid fa-star"
-                    style={{ color: "#ffdd00", marginRight: "10px" }}
+                    style={{ color: '#ffdd00', marginRight: '10px' }}
                   >
-                    {" "}
+                    {' '}
                   </i>
                   <p> {parseFloat(data.rating.toFixed(1))}/10 </p>
                 </Rating>
                 <Buttons>
-                  <VideoPlayer streamingData={id} type={"movie"} />
-                  <BookmarkButton>
+                  <VideoPlayer streamingData={id} type={'movie'} />
+                  {/* <BookmarkButton>
                     <i
                       className="fa-regular fa-bookmark"
                       style={{ marginRight: "5px" }}
                     ></i>
                     Bookmark
-                  </BookmarkButton>
+                  </BookmarkButton> */}
                 </Buttons>
               </Info>
             </Details>
@@ -456,7 +456,7 @@ const MovieDetails = () => {
                 src={
                   data.trailer.id
                     ? `https://www.youtube.com/embed/${data.trailer.id}`
-                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    : 'https://www.youtube.com/embed/dQw4w9WgXcQ'
                 }
               />
             </YouTubeWrapper>

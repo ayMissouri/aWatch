@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Discover from "./pages/Discover";
-import MovieDetails from "./pages/MovieDetails";
-import ShowDetails from "./pages/ShowDetails";
-import styled from "styled-components";
-import Footer from "./components/Footer";
-import Search from "./components/Search";
-import SearchPage from "./pages/SearchPage";
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Discover from './pages/Discover';
+import MovieDetails from './pages/MovieDetails';
+import ShowDetails from './pages/ShowDetails';
+import styled from 'styled-components';
+import Footer from './components/Footer';
+import Search from './components/Search';
+import SearchPage from './pages/SearchPage';
+import WelcomeDesktop from './pages/WelcomeDesktop';
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Search />
+      {/* <WelcomeDesktop /> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

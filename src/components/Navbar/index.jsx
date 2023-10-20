@@ -26,14 +26,6 @@ function NavBar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              {/* <NavLink
-                to="/discover"
-                activeclassname="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Discover
-              </NavLink> */}
               <a href="https://search.awatch.fun" className="nav-links">
                 Discover
               </a>
