@@ -74,7 +74,7 @@
 }
 
 .nav-item:after {
-  content: "";
+  content: '';
   display: block;
   height: 3px;
   width: 0;
@@ -145,4 +145,16 @@
   .nav-menu {
     top: 50px;
   }
+}
+
+.nav-banner {
+  background: #bd2644;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-banner-text {
+  margin-left: 8px;
+  margin-right: 8px;
 }

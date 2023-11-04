@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const Title = styled.h1`
   z-index: 0;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: -1;
     top: 2px;
@@ -121,7 +121,7 @@ const MainShow = ({ movie }) => {
 
   const handleCardClick = () => {
     // Redirect to the desired URL.
-    navigate(`/movie/${movie[randomIndex].id}`);
+    window.location.href = `https://search.awatch.fun/#/media/tmdb-movie-${movie.id}`;
   };
 
   return (
