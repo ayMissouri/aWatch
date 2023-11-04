@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 {
   /* <Link to={`/movie/${movie.id}`}></Link>; */
@@ -41,7 +41,7 @@ const MovieCard = ({ movie }) => {
 
   const handleCardClick = () => {
     // Redirect to the desired URL.
-    navigate(`/movie/${movie.id}`);
+    window.location.href = `https://search.awatch.fun/#/media/tmdb-movie-${movie.id}`;
   };
 
   return (
