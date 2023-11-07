@@ -8,12 +8,12 @@ function NavBar() {
   const handleClick = () => setClick(!click);
   return (
     <>
-      <div className="x-2 bg-[#bd2644] text-center font-bold text-white nav-banner">
+      {/* <div className="x-2 bg-[#bd2644] text-center font-bold text-white nav-banner">
         <p className="mx-2">
           ⚠️ We are currently upgrading our servers, service may be temporarily
           limited during this time. ⚠️
         </p>
-      </div>
+      </div> */}
       <nav className="navbar">
         <div className="nav-container">
           <NavLink to="/" className="nav-logo">
